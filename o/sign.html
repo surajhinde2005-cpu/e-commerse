@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - ShopEase</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f1f3f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .signup-container {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 320px;
+  }
+
+  .signup-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #131921;
+  }
+
+  .signup-container input[type="text"],
+  .signup-container input[type="email"],
+  .signup-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .signup-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f08804;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .signup-container button:hover {
+    background-color: #e67e22;
+  }
+
+  .signup-container .login-link {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .signup-container .login-link a {
+    color: #f08804;
+    text-decoration: none;
+  }
+
+  .signup-container .login-link a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="signup-container">
+  <h2>Create Your Account</h2>
+  <form onsubmit="return handleSignUp(event)">
+    <input type="text" placeholder="Full Name" required />
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <input type="password" placeholder="Confirm Password" required />
+    <button type="submit">Sign Up</button>
+  </form>
+  <div class="login-link">
+    Already have an account? <a href="login.html">Login</a>
+    <br> <br>
+     <a href="frontpage.html">Back to Home</a>
+  </div>
+</div>
+
+<script>
+  function handleSignUp(event) {
+    event.preventDefault();
+    alert("Sign Up clicked! Implement backend logic here.");
+    return false;
+  }
+</script>
+
+</body>
+</html>

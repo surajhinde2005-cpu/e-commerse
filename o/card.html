@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Page</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+  body {
+    background-color: #f1f3f6;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card img {
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.card h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 15px;
+    color: #555;
+}
+
+.card span {
+    color: #2874f0;
+    font-weight: bold;
+}
+
+    .share-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .price {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #878787;
+      margin-left: 10px;
+    }
+
+    .discount {
+      color: #388e3c;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    .rating {
+      background: #388e3c;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .btn-cart {
+      background-color: #ff9f00;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .btn-buy {
+      background-color: #fb641b;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .product-img {
+      max-height: 360px;
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+    .review-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.star-bar {
+  height: 6px;
+  border-radius: 10px;
+  background: #e0e0e0;
+  overflow: hidden;
+}
+
+.star-bar span {
+  display: block;
+  height: 100%;
+}
+
+.bar-5 { background: #388e3c; }
+.bar-4 { background: #388e3c; }
+.bar-3 { background: #388e3c; }
+.bar-2 { background: #ff9f00; }
+.bar-1 { background: #ff6161; }
+
+.circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 6px solid #388e3c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+  </style>
+</head>
+
+<body>
+
+<div class="container my-5">
+
+  <!-- PRODUCT CARD -->
+  <div class="product-card shadow-sm mb-4">
+
+    <div class="share-btn" onclick="shareProduct()">
+      <i class="bi bi-share-fill"></i>
+    </div>
+
+    <div class="row">
+
+      <!-- LEFT: IMAGE -->
+      <div class="col-md-5 text-center">
+        <img src="https://rukminim1.flixcart.com/image/400/400/xif0q/mobile/o/d/1/-original-imahggetmzzanrty.jpeg?q=60"
+             class="img-fluid product-img" alt="Product">
+
+        <div class="row mt-4 g-2">
+          <div class="col-6">
+            <button class="btn btn-cart w-100 btn-lg">ADD TO CART</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-buy w-100 btn-lg">BUY NOW</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER: DETAILS -->
+      <div class="col-md-4">
+        <h4 class="fw-semibold">
+          realme P4x 5G (Matte Silver, 256 GB) (8 GB RAM)
+        </h4>
+
+        <div class="d-flex align-items-center mb-3">
+          <span class="rating">4.3 ★</span>
+          <span class="ms-2 text-muted">1,715 Ratings & 144 Reviews</span>
+        </div>
+
+        <div class="mb-3">
+          <span class="price">₹18,499</span>
+          <span class="old-price">₹20,999</span>
+          <span class="discount">11% off</span>
+        </div>
+
+        <p class="text-success fw-semibold">Extra ₹1000 off</p>
+
+        <h6 class="fw-semibold">Available Offers</h6>
+        <p class="mb-1">✔ 5% Cashback on Axis Bank Credit Card</p>
+        <p class="mb-1">✔ 5% Cashback on SBI Credit Card</p>
+        <p class="mb-1">✔ Special Price: Get extra ₹1000 off</p>
+      </div>
+
+      <!-- RIGHT: PANEL -->
+      <div class="col-md-3 border-start">
+
+        <!-- Color -->
+        <div class="mb-3">
+          <h6 class="fw-semibold">Color</h6>
+          <div class="d-flex gap-2">
+            <img src="https://rukminim1.flixcart.com/image/64/64/xif0q/mobile/o/d/1/-original-imahggetmzzanrty.jpeg?q=60"
+                 width="50" class="border border-primary rounded p-1">
+            <img src="https://rukminim1.flixcart.com/image/64/64/xif0q/mobile/o/d/1/-original-imahggetmzzanrty.jpeg?q=60"
+                 width="50" class="border rounded p-1">
+            <img src="https://rukminim1.flixcart.com/image/64/64/xif0q/mobile/o/d/1/-original-imahggetmzzanrty.jpeg?q=60"
+                 width="50" class="border rounded p-1">
+          </div>
+        </div>
+
+        <!-- Delivery -->
+        <div class="mb-3">
+          <h6 class="fw-semibold">Delivery</h6>
+          <div class="input-group input-group-sm mb-2">
+            <input type="text" class="form-control" placeholder="Enter Delivery Pincode">
+            <button class="btn btn-outline-primary">Check</button>
+          </div>
+          <small>
+            Delivery by <b>29 Jan, Thursday</b><br>
+            if ordered before 11:27 PM
+          </small><br>
+          <a href="#" class="small">View Details</a>
+        </div>
+
+        <!-- Highlights -->
+        <div class="mb-3">
+          <h6 class="fw-semibold">Highlights</h6>
+          <ul class="small">
+            <li>4 GB RAM | 64 GB ROM</li>
+            <li>16.94 cm (6.67 inch) HD+ Display</li>
+            <li>8MP Rear Camera | 8MP Front Camera</li>
+            <li>5000 mAh Battery</li>
+            <li>UniSoc T7250 Processor</li>
+          </ul>
+        </div>
+
+        <!-- Seller -->
+        <div>
+          <h6 class="fw-semibold">Seller</h6>
+          <p class="text-primary fw-semibold mb-1">
+            mmkekin <span class="badge bg-success">4.6 ★</span>
+          </p>
+          <ul class="small">
+            <li>7 Days Brand Support</li>
+            <li>GST invoice available</li>
+          </ul>
+          <a href="#" class="small">See other sellers</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIFICATIONS -->
+  <div class="bg-white p-4 rounded shadow-sm">
+    <h4 class="fw-semibold mb-4">Specifications</h4>
+
+    <table class="table table-sm">
+      <tr><td class="text-muted w-50">Brand</td><td>Acer</td></tr>
+      <tr><td class="text-muted">Model Name</td><td>Super ZX 5G</td></tr>
+      <tr><td class="text-muted">RAM</td><td>6 GB</td></tr>
+      <tr><td class="text-muted">Internal Storage</td><td>128 GB</td></tr>
+      <tr><td class="text-muted">Battery</td><td>5000 mAh</td></tr>
+      <tr><td class="text-muted">Primary Camera</td><td>64MP</td></tr>
+      <tr><td class="text-muted">Network</td><td>5G</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- RATINGS & REVIEWS -->
+<div class="review-card shadow-sm mb-4">
+<div class="d-flex justify-content-between mb-3">
+<h5>Ratings & Reviews</h5>
+<button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#rateModal">Rate Product</button>
+</div>
+
+<div class="row align-items-center">
+<div class="col-md-3 text-center border-end">
+<h2><span id="avgRating">3.1</span> ★</h2>
+<p class="text-muted"><span id="totalRatings">32</span> Ratings</p>
+</div>
+
+<div class="col-md-5" id="ratingBars"></div>
+
+<div class="col-md-4 text-center d-flex justify-content-around">
+<div><div class="circle">3.1</div><small>Camera</small></div>
+<div><div class="circle">3.3</div><small>Battery</small></div>
+<div><div class="circle">3.6</div><small>Display</small></div>
+<div><div class="circle">3.4</div><small>Design</small></div>
+</div>
+</div>
+</div>
+
+<!-- RELATED PRODUCTS -->
+<h4 class="mb-3">Similar Products</h4>
+<div class="row g-4 product-grid">
+<div class="col-md-4">
+<div class="card p-3 text-center">
+<img src="https://rukminim1.flixcart.com/image/220/220/xif0q/mobile/z/u/l/-original-imahhqjwyzsjyfvn.jpeg?q=60">
+<h6>Moto G57</h6>
+<p>From <b>₹21,900</b></p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-3 text-center">
+<img src="https://rukminim1.flixcart.com/image/220/220/xif0q/mobile/f/a/6/-original-imahfz2tnafhmagr.jpeg?q=60">
+<h6>Galaxy S24</h6>
+<p>From <b>₹64,900</b></p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-3 text-center">
+<img src="https://rukminim1.flixcart.com/image/220/220/xif0q/mobile/o/2/g/-original-imahbr2cz5apcwze.jpeg?q=60">
+<h6>POCO C75</h6>
+<p>From <b>₹14,900</b></p>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="rateModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3">
+      <h5 class="mb-3">Rate this Product</h5>
+
+      <label>Camera</label>
+      <select class="form-select mb-2" id="rateCamera">
+        <option value="">Select</option>
+        <option value="5">5 ★</option>
+        <option value="4">4 ★</option>
+        <option value="3">3 ★</option>
+        <option value="2">2 ★</option>
+        <option value="1">1 ★</option>
+      </select>
+
+      <label>Battery</label>
+      <select class="form-select mb-2" id="rateBattery">
+        <option value="">Select</option>
+        <option value="5">5 ★</option>
+        <option value="4">4 ★</option>
+        <option value="3">3 ★</option>
+        <option value="2">2 ★</option>
+        <option value="1">1 ★</option>
+      </select>
+
+      <label>Display</label>
+      <select class="form-select mb-2" id="rateDisplay">
+        <option value="">Select</option>
+        <option value="5">5 ★</option>
+        <option value="4">4 ★</option>
+        <option value="3">3 ★</option>
+        <option value="2">2 ★</option>
+        <option value="1">1 ★</option>
+      </select>
+
+      <label>Design</label>
+      <select class="form-select mb-3" id="rateDesign">
+        <option value="">Select</option>
+        <option value="5">5 ★</option>
+        <option value="4">4 ★</option>
+        <option value="3">3 ★</option>
+        <option value="2">2 ★</option>
+        <option value="1">1 ★</option>
+      </select>
+
+      <button class="btn btn-primary w-100" onclick="submitFullRating()">Submit Rating</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* SIMULATED LOGIN */
+const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+</script>
+
+<script>
+let ratings = {5:11,4:4,3:3,2:4,1:10};
+
+let params = {
+  camera: { total: 3.1, count: 32 },
+  battery: { total: 3.3, count: 32 },
+  display: { total: 3.6, count: 32 },
+  design: { total: 3.4, count: 32 }
+};
+
+/* BLOCK RATING IF NOT LOGGED IN */
+document.querySelector('[data-bs-target="#rateModal"]').onclick = function(){
+  if(!isLoggedIn){
+    alert("Please login to rate this product");
+    return false;
+  }
+};
+
+/* RENDER RATINGS */
+function renderRatings(){
+  let total=0,sum=0,bars='';
+  Object.keys(ratings).reverse().forEach(s=>{
+    total+=ratings[s];
+    sum+=s*ratings[s];
+  });
+
+  document.getElementById('avgRating').innerText=(sum/total).toFixed(1);
+  document.getElementById('totalRatings').innerText=total;
+
+  Object.keys(ratings).reverse().forEach(s=>{
+    bars+=`
+    <div class="d-flex align-items-center mb-2">
+      <small class="me-2">${s}★</small>
+      <div class="star-bar flex-grow-1 me-2">
+        <span class="bar-${s}" style="width:${ratings[s]/total*100}%"></span>
+      </div>
+      <small>${ratings[s]}</small>
+    </div>`;
+  });
+  document.getElementById('ratingBars').innerHTML=bars;
+
+  document.getElementById("camera").innerText=(params.camera.total).toFixed(1);
+  document.getElementById("battery").innerText=(params.battery.total).toFixed(1);
+  document.getElementById("display").innerText=(params.display.total).toFixed(1);
+  document.getElementById("design").innerText=(params.design.total).toFixed(1);
+}
+
+/* SUBMIT FULL RATING */
+function submitFullRating(){
+  if(localStorage.getItem("rated")){
+    alert("You already rated this product");
+    return;
+  }
+
+  let c = +rateCamera.value;
+  let b = +rateBattery.value;
+  let d = +rateDisplay.value;
+  let de = +rateDesign.value;
+
+  if(!c||!b||!d||!de){
+    alert("Please rate all parameters");
+    return;
+  }
+
+  let overall = Math.round((c+b+d+de)/4);
+  ratings[overall]++;
+
+  params.camera.total = (params.camera.total*params.camera.count + c)/(params.camera.count+1);
+  params.battery.total = (params.battery.total*params.battery.count + b)/(params.battery.count+1);
+  params.display.total = (params.display.total*params.display.count + d)/(params.display.count+1);
+  params.design.total = (params.design.total*params.design.count + de)/(params.design.count+1);
+
+  params.camera.count++;
+  params.battery.count++;
+  params.display.count++;
+  params.design.count++;
+
+  localStorage.setItem("rated",true);
+
+  renderRatings();
+  bootstrap.Modal.getInstance(rateModal).hide();
+}
+
+renderRatings();
+</script>
+
+
+</body>
+
+   <div class="row g-4 mt-2">
+      <div class="col-md-4">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/w/m/-original-imahed526jhtgj7k.jpeg?q=70"   >
+    
+      <h5>Acer SUper 5G</h5>
+      <p>>From <span>₹10,900</span></p>
+  </div>
+   </div>
+
+   <div class="col-md-4">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/n/g/9/i1-touch-and-type-phone-i1-i-kall-original-imah79n3pugthm68.jpeg?q=70" >
+ <h5>Jio Bharat V4 4G</h5>
+      <p>From <span>₹725</span></p>
+  </div>
+ </div>
+
+  <div class="col-md-4">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/shopsy-cases-covers/l/3/c/02d2-cf-rmx3999-flip-cover-haniry-original-imah3grj5g3nmjd2.jpeg?q=70" >
+    
+      <h5>Realme 12 5G mobile</h5>
+      <p>From <span>₹17,725</span></p>
+  </div>
+  </div>
+  </div>
+
+
+  <!-- FOUR LINE -->
+    <div class="row g-4 mt-2">
+      <div class="col-md-4">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/a/b/k/-original-imahjyh2f3jthhvg.jpeg?q=70"   >
+    
+      <h5>MOTOROLA Signature</h5>
+      <p>>From <span>₹64,999</span></p>
+  </div>
+   </div>
+
+   <div class="col-md-4">
+  <div class="card">
+    <img src="http://rukminim2.flixcart.com/image/312/312/xif0q/mobile/r/8/1/-original-imahfz2tenzpsd3p.jpeg?q=70" >
+ <h5>Samsung Galaxy S24 5G Snapdragon </h5>
+      <p>From <span>₹47,999</span></p>
+  </div>
+ </div>
+
+  <div class="col-md-4">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/z/9/n/-original-imahgdr4shzrvcfh.jpeg?q=70" >
+    
+      <h5>realme P4x 5G</h5>
+      <p>From <span>₹18,499</span></p>
+  </div>
+  </div>
+  </div>
+
+  
+  <!-- FIVE LINE -->
+    <div class="row g-4 mt-2">
+      <div class="col-md-4">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/4/b/p/-original-imahgzhpc8abrthu.jpeg?q=70"   >
+    
+      <h5>Ai+ Pulse </h5>
+      <p>>From <span>₹6,999</span></p>
+  </div>
+   </div>
+
+   <div class="col-md-4">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/r/p/-original-imahdsbnk9ya4e3z.jpeg?q=70" >
+ <h5>Ai+ Nova 5G </h5>
+      <p>From <span>₹9,999</span></p>
+  </div>
+ </div>
+
+  <div class="col-md-4">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/i/q/r/-original-imahfvrmzd46wgw5.jpeg?q=70" >
+    
+      <h5>Samsung Galaxy F06 5G</h5>
+      <p>From <span>₹8,999</span></p>
+  </div>
+  </div>
+  </div>
+
+  </div>
+
+
+  </html>

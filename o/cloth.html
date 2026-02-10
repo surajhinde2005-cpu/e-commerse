@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Flipkart Style Filters</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+  background:linear-gradient(135deg,#eef2f7,#f7f9fc);
+  font-family:"Segoe UI",sans-serif;
+  transition:.3s;
+}
+
+/* DARK MODE */
+body.dark{
+  background:#0f172a;
+  color:#e5e7eb;
+}
+body.dark .card,
+body.dark .sidebar{
+  background:#111827;
+}
+
+/* LAYOUT */
+.main-layout{display:flex;gap:25px;padding:20px}
+.sidebar{
+  width:300px;height:100vh;position:sticky;top:0;
+  padding:20px;border-radius:20px;background:#fff;overflow:auto
+}
+.content{flex:1}
+
+/* FILTER */
+.filter-title{font-size:13px;font-weight:700;margin-bottom:10px}
+.filter-list{list-style:none;padding-left:0}
+.filter-list li{font-size:14px;margin-bottom:8px;color:#555;cursor:pointer}
+.filter-list li.active{font-weight:600;color:#000}
+
+.brand-search{
+  width:100%;border:none;border-bottom:1px solid #ccc;
+  padding:6px 4px;margin:10px 0;outline:none
+}
+
+/* arrow  */
+.filter-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 18px;
+  color: #2874f0;
+}
+
+/* FILTER SECTIONS */
+.filter-section {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+  color: #2874f0;
+}
+
+.filter-body {
+  display: none;
+  margin-top: 12px;
+  animation: slideDown 0.35s ease;
+}
+
+.filter-body label {
+  display: block;
+  font-size: 14px;
+  margin: 7px 0;
+  cursor: pointer;
+}
+
+.filter-body input {
+  accent-color: #2874f0;
+}
+
+.more-link {
+  margin-top: 10px;
+  color: #2874f0;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-group label{
+  display:flex;align-items:center;gap:8px;
+  font-size:14px;margin-bottom:8px;cursor:pointer
+}
+
+
+.more{font-size:13px;color:#2874f0;cursor:pointer}
+
+/* COLOR DOT */
+.color-dot{
+  width:14px;height:14px;border-radius:50%;
+  border:1px solid #ccc;display:inline-block
+}
+
+/* PRODUCT CARD – PREMIUM */
+.card {
+  background: linear-gradient(145deg, #ffffff, #f1f4fa);
+  border-radius: 22px;
+  padding: 22px;
+  height: 100%;
+  text-align: center;
+  border: none;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* CARD GLOW */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(40,116,240,0.12), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* ⭐ FIX */
+}
+
+.wishlist,
+.share-btn{
+  z-index: 5;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-14px) scale(1.03);
+  box-shadow:
+    0 25px 55px rgba(0,0,0,0.2),
+    0 0 30px rgba(40,116,240,0.25);
+}
+
+/* PRODUCT IMAGE */
+.card img {
+  height: 220px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  transition: transform 0.35s ease;
+}
+
+.card:hover img {
+  transform: scale(1.12);
+}
+
+/* TEXT */
+.card h5 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 15px;
+  color: #555;
+}
+
+.card span {
+  font-size: 17px;
+  font-weight: 800;
+  color: #2874f0;
+}
+
+/* GRID */
+.row {
+  margin-bottom: 15px;
+}
+
+/* ANIMATION */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* WISHLIST */
+.wishlist{
+  position:absolute;top:15px;right:15px;
+  font-size:18px;cursor:pointer;color:#bbb
+}
+.wishlist.active{color:red}
+
+/* CART */
+.cart-btn{
+  background:#2874f0;color:#fff;border:none;
+  padding:6px 14px;border-radius:18px;margin-top:10px
+}
+.cart-btn.pop{transform:scale(1.2)}
+
+/* SKELETON */
+.skeleton{
+  height:330px;border-radius:22px;
+  background:linear-gradient(90deg,#ddd,#eee,#ddd);
+  animation:load 1.2s infinite
+}
+@keyframes load{0%{background-position:0}100%{background-position:100%}}
+
+/* DARK BUTTON */
+.dark-toggle{
+  position:fixed;bottom:20px;right:20px;
+  background:#000;color:#fff;padding:12px;
+  border-radius:50%;cursor:pointer
+}
+
+/* price bar */
+/* PRICE RANGE */
+.price-range{
+  margin-top:12px;
+}
+.price-values{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:600;
+  color:#2874f0;
+}
+.price-range input[type=range]{
+  width:100%;
+  margin:6px 0;
+}
+
+
+/*  more toggle */
+
+.brandBody label{
+  display:none;
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.brandBody label.visible{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.brand-actions{
+  font-size:13px;
+  color:#2874f0;
+  cursor:pointer;
+  margin-top:8px;
+}
+
+
+/* share */
+.share-btn{
+  position:absolute;
+  top:15px;
+  right:45px;
+  font-size:17px;
+  cursor:pointer;
+  color:#ca1414;
+}
+.share-btn:hover{
+  color:#2874f0;
+}
+
+
+/* center alignment */
+.card h6,
+.card p{
+  text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="main-layout">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+<h5 class="fw-bold mb-3">Filters</h5>
+
+<!-- CATEGORIES -->
+<div class="mb-4">
+  <div class="filter-title">CATEGORIES</div>
+  <ul class="filter-list">
+    <li>‹ Clothing and Accessories</li>
+    <li>‹ Kurtas, Ethnic Sets and More</li>
+    <li>‹ Ethnic Sets</li>
+    <li class="active">Women's Ethnic Sets</li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- BRAND -->
+<div class="mb-4 filter-group">
+
+  <div class="filter-header" onclick="toggleFilter('brandBody','brandArrow')">
+    <span class="filter-title">BRAND</span>
+    <span id="brandArrow" class="arrow">▼</span>
+  </div>
+
+  <!-- IMPORTANT: unique ID -->
+  <div class="brandBody" id="brandBody">
+    <label><input type="checkbox"> LIBAS</label>
+    <label><input type="checkbox"> Indo Era</label>
+    <label><input type="checkbox"> Klosia</label>
+    <label><input type="checkbox"> W</label>
+    <label><input type="checkbox"> Varanga</label>
+
+    <label><input type="checkbox"> Vishudh</label>
+    <label><input type="checkbox"> Aurelia</label>
+    <label><input type="checkbox"> Biba</label>
+    <label><input type="checkbox"> Anouk</label>
+    <label><input type="checkbox"> Sangria</label>
+
+    <label><input type="checkbox"> Global Desi</label>
+    <label><input type="checkbox"> Libas Art</label>
+    <label><input type="checkbox"> Soch</label>
+    <label><input type="checkbox"> Rangriti</label>
+    <label><input type="checkbox"> Jaipur Kurti</label>
+  </div>
+
+  <div class="brand-actions">
+    <span class="more" onclick="showMore('brandBody')">MORE</span> |
+    <span class="less" onclick="showLess('brandBody')">LESS</span>
+  </div>
+
+</div>
+
+<hr>
+
+<!-- COLOR -->
+<div class="mb-4 filter-group">
+  
+   <div class="filter-header" onclick="toggleFilter('colBody','colArrow')">
+        <span class="filter-title">COLOR</span>
+        <span id="colArrow" class="arrow">▼</span>
+      </div>
+
+      <div id="colBody" class="filter-body">
+
+  <label><input type="checkbox" class="color" value="purple"> <span class="color-dot" style="background:purple"></span> Purple</label>
+  <label><input type="checkbox" class="color" value="pink"> <span class="color-dot" style="background:hotpink"></span> Pink</label>
+  <label><input type="checkbox" class="color" value="yellow"> <span class="color-dot" style="background:gold"></span> Yellow</label>
+  <label><input type="checkbox" class="color" value="green"> <span class="color-dot" style="background:green"></span> Green</label>
+  <label><input type="checkbox" class="color" value="blue"> <span class="color-dot" style="background:blue"></span> Blue</label>
+  <label><input type="checkbox" class="color" value="black"> <span class="color-dot" style="background:black"></span> Black</label>
+</div>
+</div>
+<hr>
+
+<!-- SIZE -->
+<div class="mb-4 filter-group">
+     <div class="filter-header" onclick="toggleFilter('sizeBody','sizeArrow')">
+        <span class="filter-title">SIZE</span>
+        <span id="sizeArrow" class="arrow">▼</span>
+      </div>
+
+      <div id="sizeBody" class="filter-body">
+  <label><input type="checkbox" class="size" value="s"> S</label>
+  <label><input type="checkbox" class="size" value="m"> M</label>
+  <label><input type="checkbox" class="size" value="l"> L</label>
+  <label><input type="checkbox" class="size" value="xl"> XL</label>
+  <label><input type="checkbox" class="size" value="2xl"> 2XL</label>
+  <label><input type="checkbox" class="size" value="3xl"> 3XL</label>
+</div>
+</div>
+
+<hr>
+
+<!-- gender -->
+
+
+<div class="mb-4 filter-group">
+     <div class="filter-header" onclick="toggleFilter('genBody','genArrow')">
+        <span class="filter-title">GENDER</span>
+        <span id="genArrow" class="arrow">▼</span>
+      </div>
+
+      <div id="genBody" class="filter-body">
+  <label><input type="checkbox" class="gender" value="male"> MALE</label>
+  <label><input type="checkbox" class="gender" value="female"> FEMALE</label>
+</div>
+</div>
+
+<hr>
+
+<!-- PRICE -->
+<div class="mb-4 filter-group">
+  <div class="filter-header" onclick="toggleFilter('priceBody','priceArrow')">
+    <span class="filter-title">PRICE</span>
+    <span id="priceArrow" class="arrow">▼</span>
+  </div>
+
+  <div id="priceBody" class="filter-body price-range">
+    <input type="range" id="minPrice" min="0" max="5000" value="0">
+    <input type="range" id="maxPrice" min="0" max="5000" value="5000">
+
+    <div class="price-values">
+      <span>₹<span id="minVal">0</span></span>
+      <span>₹<span id="maxVal">5000</span></span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<input class="form-control mb-4" id="search" placeholder="Search products...">
+
+<div class="row g-4">
+
+<div class="col-md-4 skeleton"></div>
+<div class="col-md-4 skeleton"></div>
+<div class="col-md-4 skeleton"></div>
+
+<div class="col-md-4 product" data-name="libas kurta" data-brand="libas" data-color="pink" data-size="m" data-price="1899" data-gender="female">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+
+    <div class="wishlist" onclick="toggleWish(1,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/salwar-kurta-dupatta/v/b/x/xl-skdr4008-gajri-j-new-ethnic-4-you-original-imahjz93dfahv7jp.jpeg?q=70">
+    <h6>Libas Kurta Set</h6>
+    <p>From <span>₹1,499</span></p>
+
+  </div>
+</div>
+
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/salwar-kurta-dupatta/z/o/9/l-1663-fk-mk-l-orriya-original-imahjb7chzwgeyfj.jpeg?q=70">
+    <h6>ORRIYA</h6>
+     <p>From <span>₹2,499</span></p>
+    
+  </div>
+</div>
+
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/salwar-kurta-dupatta/5/i/n/xxl-258-get-smart-wear-original-imahgg36buuggupf.jpeg?q=70">
+    <h6>Iself design kurta set</h6>
+     <p>From <span>₹490</span></p>
+    
+  </div>
+</div>
+
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/6/s/7/m-new-2038-deergold-fashion-original-imahdzvwgz3kpzdw.jpeg?q=70">
+    <h6>art silky kurty pand and dupatta</h6>
+     <p>From <span>₹479</span></p>
+    
+  </div>
+</div>
+
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/u/o/b/m-embroidery-kurta-set-with-dupatta-dalivd-x-original-imahhw2vxgcnshgg.jpeg?q=70">
+    <h6>cotton blendy kurta pandy and dupatta</h6>
+     <p>From <span>₹2,499</span></p>
+    
+  </div>
+</div>
+
+<!--  -->
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/q/g/g/-original-imahffa8wj2std8r.jpeg?q=70">
+    <h6>dishva fashion</h6>
+     <p>From <span>₹2,499</span></p>
+    
+  </div>
+</div>
+
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/salwar-kurta-dupatta/l/a/g/xxl-vv-9561-z-d-vredevogel-original-imah97mhbhhv9h6p.jpeg?q=70">
+    <h6>kurta and dupta</h6>
+     <p>From <span>₹2,499</span></p>
+    
+  </div>
+</div>
+
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/2/5/l/m-vkskd1833-ahika-original-imah4m4gfhbgfu3g.jpeg?q=70">
+    <h6>Yellow Silk Blend Straight Suit Set</h6>
+     <p>From <span>₹2,499</span></p>
+    
+  </div>
+</div>
+
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/salwar-kurta-dupatta/l/w/g/l-anarkali-fashioncart7-original-imahgukzu67bf7ut.jpeg?q=70">
+    <h6>Anarkali-style ethnic dress set</h6>
+     <p>From <span>₹2,499</span></p>
+    
+  </div>
+</div>
+
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/a/l/f/s-black-dhamaka-klosia-original-imah4khhpkbrch2e.jpeg?q=70">
+    <h6>black ethnic kurta-set outfit from the brand Klosia</h6>
+     <p>From <span>₹2,499</span></p>
+    
+  </div>
+</div>
+
+<div class="col-md-4 product" data-name="indo era set" data-brand="indo era" data-color="blue" data-size="l" data-price="2099" data-gender="male">
+  <div class="card">
+    <div class="share-btn" onclick="shareProduct(this)">📤</div>
+    <div class="wishlist" onclick="toggleWish(2,this)">❤</div>
+    <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/salwar-kurta-dupatta/r/1/c/xxl-skd4006-mustard-p-new-ethnic-4-you-original-imah9qs55bnnjwvg.jpeg?q=70">
+    <h6>mustard-colored ethnic salwar-kurta set with dupatta</h6>
+     <p>From <span>₹2,499</span></p>
+    
+  </div>
+</div>
+
+
+</div>
+</div>
+
+<div class="dark-toggle" onclick="toggleDark()">🌙</div>
+
+
+<!-- javascript -->
+ 
+<script>
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
+
+/* WISHLIST */
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+function toggleWish(id,el){
+  el.classList.toggle("active");
+  wishlist.includes(id) ? wishlist = wishlist.filter(x=>x!==id) : wishlist.push(id);
+  localStorage.setItem("wishlist",JSON.stringify(wishlist));
+}
+
+/* CART */
+function addCart(btn){
+  btn.classList.add("pop");
+  setTimeout(()=>btn.classList.remove("pop"),300);
+}
+
+/* FILTER LOGIC */
+document.querySelectorAll("input").forEach(i=>i.addEventListener("change",applyFilters));
+document.getElementById("search").addEventListener("keyup",applyFilters);
+
+function applyFilters(){
+  let search = document.getElementById("search").value.toLowerCase();
+  let brands=[...document.querySelectorAll(".brand:checked")].map(b=>b.value);
+  let colors=[...document.querySelectorAll(".color:checked")].map(c=>c.value);
+  let gender=[...document.querySelectorAll(".gender:checked")].map(g=>g.value);
+  let sizes=[...document.querySelectorAll(".size:checked")].map(s=>s.value);
+  let minP = +minRange.value;
+  let maxP = +maxRange.value;
+ 
+
+  document.querySelectorAll(".product").forEach(p=>{
+    let price = +p.dataset.price;
+
+    let ok =
+      p.dataset.name.includes(search) &&
+      (brands.length==0 || brands.includes(p.dataset.brand)) &&
+      (colors.length==0 || colors.includes(p.dataset.color)) &&
+      (gender.length==0 || gender.includes(p.dataset.gender)) &&
+      (sizes.length==0 || sizes.includes(p.dataset.size)) &&
+      price >= minP && price <= maxP;
+
+    p.style.display = ok ? "block" : "none";
+  });
+}
+
+
+/* REMOVE SKELETON */
+window.onload=()=>{
+  document.querySelectorAll(".skeleton").forEach(s=>s.remove());
+};
+
+
+// <!-- sidebar 
+
+function toggleFilter(bodyId, arrowId) {
+  const body = document.getElementById(bodyId);
+  const arrow = document.getElementById(arrowId);
+  if (body.style.display === "block" || body.style.display === "") {
+    body.style.display = "none";
+    arrow.textContent = "▼";
+  } else {
+    body.style.display = "block";
+    arrow.textContent = "⌃";
+  }
+}
+
+</script>
+
+<!-- pricebar -->
+<script>
+const minRange = document.getElementById("minPrice");
+const maxRange = document.getElementById("maxPrice");
+const minVal = document.getElementById("minVal");
+const maxVal = document.getElementById("maxVal");
+
+minVal.innerText = minRange.value;
+maxVal.innerText = maxRange.value;
+
+minRange.oninput = maxRange.oninput = () => {
+  if (+minRange.value > +maxRange.value) {
+    [minRange.value, maxRange.value] = [maxRange.value, minRange.value];
+  }
+  minVal.innerText = minRange.value;
+  maxVal.innerText = maxRange.value;
+  applyFilters();
+};
+</script>
+
+<!-- more 125 -->
+<script>
+const step = 5;
+const minVisible = 5;
+const visibleMap = {}; // remembers count per filter
+
+function initList(id){
+  const items = document.querySelectorAll(`#${id} label`);
+  visibleMap[id] = minVisible;
+  updateList(id);
+}
+
+function updateList(id){
+  const items = document.querySelectorAll(`#${id} label`);
+  items.forEach((el, i)=>{
+    el.classList.toggle("visible", i < visibleMap[id]);
+  });
+}
+
+function showMore(id){
+  const items = document.querySelectorAll(`#${id} label`);
+  visibleMap[id] = Math.min(visibleMap[id] + step, items.length);
+  updateList(id);
+}
+
+function showLess(id){
+  visibleMap[id] = Math.max(minVisible, visibleMap[id] - step);
+  updateList(id);
+}
+
+
+
+/* INIT */
+initList("brandBody");
+</script>
+
+<!-- share -->
+
+<script>
+function shareProduct(el){
+  const card = el.closest(".card");
+  const title = card.querySelector("h6").innerText;
+  const price = card.querySelector("p").innerText;
+  const url = window.location.href;
+
+  if (navigator.share) {
+    navigator.share({
+      title: title,
+      text: `${title} - ${price}`,
+      url: url
+    });
+  } else {
+    navigator.clipboard.writeText(`${title} - ${price} ${url}`);
+    alert("Product link copied!");
+  }
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,418 @@
+https://rukminim2.flixcart.com/image/612/612/xif0q/shirt/e/y/k/l-ss25-csmssrt8392-campus-sutra-original-imah8gb6ymumghfq.jpeg?q=70
+
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+                                                                           
+<style>
+  body {
+    background-color: #f1f3f6;
+    font-family: 'Segoe UI', sans-serif;
+}
+.no-underline {
+    text-decoration: none;
+    color: inherit;
+  }
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card img {
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.card h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 15px;
+    color: #555;
+}
+
+.card span {
+    color: #2874f0;
+    font-weight: bold;
+}
+
+
+/* Layout */
+.main-layout {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 270px;
+    background: #fff;
+    padding: 15px;
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+}
+
+/* Right content */
+.content-area {
+    flex: 1;
+    padding: 20px;
+}
+
+.filter-section {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+  }
+
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .arrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .filter-body {
+    display: none;
+    margin-top: 10px;
+  }
+
+  .filter-body label {
+    display: block;
+    margin: 6px 0;
+    font-size: 14px;
+  }
+
+  .more-link {
+    color: #2874f0;
+    font-weight: 600;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+</style>
+<div class="main-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <div class="sidebar">
+    <h4 class="filter-title">Filters</h4>
+
+    <div class="filter-section">
+      <h6>CATEGORIES</h6>
+      <p class="category">‹ Mobiles & Accessories</p>
+      <strong>Mobiles</strong>
+    </div>
+
+    <!-- BRAND FILTER -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('brandBody','brandArrow')">
+        <span>BRAND</span>
+        <span id="brandArrow" class="arrow">▼</span>
+      </div>
+
+      <div id="brandBody" class="filter-body">
+        <label><input type="checkbox"> Apple</label>
+        <label><input type="checkbox"> Samsung</label>
+        <label><input type="checkbox"> Motorola</label>
+        <label><input type="checkbox"> Vivo</label>
+        <label><input type="checkbox"> Oppo</label>
+
+        <div class="more-link">136 MORE</div>
+      </div>
+    </div>
+
+    <!-- RAM FILTER -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('ramBody','ramArrow')">
+        <span>RAM</span>
+        <span id="ramArrow" class="arrow">▼</span>
+      </div>
+
+      <div id="ramBody" class="filter-body" style="display:block;">
+        <label><input type="checkbox"> 4 GB</label>
+        <label><input type="checkbox"> 8 GB and Above</label>
+        <label><input type="checkbox"> 6 GB</label>
+      </div>
+    </div>
+
+        <!-- INTERNAL STORAGE FILTER -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('storageBody','storageArrow')">
+        <span>INTERNAL STORAGE</span>
+        <span id="storageArrow" class="arrow">▼</span>
+      </div>
+      <div id="storageBody" class="filter-body">
+
+         <label><input type="checkbox">1 GB – 1.9 GB</label>
+         <label><input type="checkbox">2 GB – 3.9 GB</label>
+         <label><input type="checkbox">4 – 7.9 GB</label>
+         <label><input type="checkbox">8 – 15.9 GB</label>
+         <label><input type="checkbox">16 – 31.9 GB</label>
+        <label><input type="checkbox">32 - 63.9 GB</label>
+        <label><input type="checkbox"> 64 - 127.9 GB</label>
+        <label><input type="checkbox"> 128 - 255.9 GB</label>
+        <label><input type="checkbox"> 256 GB & Above</label>
+      </div>
+    </div>
+
+ <!-- BATTERY FILTER -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('batteryBody','batteryArrow')">
+        <span>BATTERY CAPACITY</span>
+        <span id="batteryArrow" class="arrow">▼</span>
+      </div>
+      <div id="batteryBody" class="filter-body">
+        <label><input type="checkbox"> 5000 - 5999 mAh</label>
+        <label><input type="checkbox"> 6000 mAh & Above</label>
+      </div>
+    </div>
+
+<!-- network type -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('netBody','netArrow')">
+        <span>NETWORK TYPES</span>
+        <span id="netArrow" class="arrow">▼</span>
+      </div>
+      <div id="netBody" class="filter-body">
+        <label><input type="checkbox"> 2G</label>
+        <label><input type="checkbox"> 3G</label>
+        <label><input type="checkbox"> 4G</label>
+        <label><input type="checkbox"> 5G</label>
+      </div>
+    </div>
+
+    <!-- DISCOUNT -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('DBody','DArrow')">
+        <span>DISCOUNT</span>
+        <span id="DArrow" class="arrow">▼</span>
+      </div>
+      <div id="DBody" class="filter-body">
+        <label><input type="checkbox"> 10%</label>
+        <label><input type="checkbox"> 20%</label>
+        <label><input type="checkbox"> 30%</label>
+        <label><input type="checkbox"> 40%</label>
+        <label><input type="checkbox"> 50%</label>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right sidebar -->
+    <div class="content-area">
+
+
+
+   <div class="row g-4">
+      <div class="col-md-4">
+        <a href="card.html" class="no-underline">
+
+  <div class="card">
+
+    <img src="https://rukminim1.flixcart.com/image/220/220/xif0q/mobile/o/d/1/-original-imahggetmzzanrty.jpeg?q=60"   >
+    
+      <h5>realme P4x 5G</h5>
+      <p>From <span>₹18,499</span></p>
+  </div></a>
+   </div>
+
+   <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/f/k/s/-original-imagyzwynj6yu6xu.jpeg?q=70" >
+ <h5>realme 12 5G</h5>
+ <p>From <span>₹14,900</span></p>
+  </div></a>
+ </div>
+
+  <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw4ODhIODw4NDRANDQ0NEA4NDg8ODg8OFREWFxURExMkHSosGBoxJxMVLTMtMTUxMi4vFx8zRDosNygtOjcBCgoKDg0OGhAQFy0dHR0rKy0tLSstKy0tKy0tLS0tLS0rLSstLS0tKy0tLS0tLSstLS0tKy0tLS0tLS0tKystK//AABEIANQAoAMBEQACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAACAQMEBQYABwj/xABSEAABAwIBBQgLCg0CBwAAAAABAAIDBBESBQYhMUETJFFhc3SRswciJTJSU3GhsbTSFBYXNkKBgpLC0yMmMzRUYnJ1k5SywfBDgxVjZKOk0fH/xAAaAQACAwEBAAAAAAAAAAAAAAAAAQIDBAUG/8QAMBEBAAICAQQBAwMDAgcAAAAAAAECAxEEEjEyMyETQVEFFBUiI4FCYWJxkaHB8PH/2gAMAwEAAhEDEQA/APWMs5WdE5sELRJO8F/bkiKKO9t0kPBsA1kq7Hi6vmUbW0q3OqXd/Vzk8EIihYOIDCT51qjFT8KeoJEv6XWDyzRewj6Mf+wNy7DLr911nlEsZH9CPpV/H/YdUhO7fpdZ/Fj9hP6VfwOqSF0/6XV/Wi9lS+lT8DqkBkn/AEur+tF7Kf0qb7F1SbdUTjSayqAAJJLogGtGsk4VKcOOI3pHcy82yl2Tq+WoNNk01c+IlrLNbNPMBrcAGdoNu020myw3tT/TC+I1HyeDs8ndsIK0A6e2q4WnouLKr+qSm9IL+OfiKv8AnYfaRqw66Ed79LaIasHhNXCQD5MSNWHXQxhz54Kn+NT+2nqx9dCYc+eCq/jU3tI1YuvGT8eP+q/jU/tJ6sf1MY43Z7A9s2qcOAVEDT04kdNh9XGc3XPHxNZ/ORe0l03/AAX1KEM2ePiqv+bi9pPov+B9SiNV5zZ1ZPG7TsrGsGlz37nVQtb+sLHD5bhHTMR8wcWpPZ6T2MuyJHlhroZWthq4mY3MYTuUsV7bpHfSLE6QdWjSdkJjfzCUfiVmDjnqJNpqDF9CJjQAPrOW3F4qp+UXKtfDTwunneY4mnD2t8cj72wt9FtZO0AJ2v0jp6mEruyTRtJw5LfIB8qSWIPPGVV+6unGODmQs98n1sohZFPk+od+TAc0skcB3rCNBOjvSNOq97K7FyOqdShajbZOqTKw4sOOMgOLO8eCLtkbxEdCtvHTKKQ4J7BpwUi+zN5/1BjydMBf8NhisNZjPbSj6rSFVmnVDp3J2GsjR0+S2VVhu9e6SSSS3biNshYyMHYO1J8p4ljx1RzW+dN2rvhQ5MBIQAkKQefdlL/i+On9we7DBgcCaEv3QVeLQZQ3SW21DUqL72vp06bLJW7+5oPdWH3RuEW72tbdsAx6tF769l9Sup2VTEJBCnpXICFIgkKQDfzi1jpBB1gjaETETHyW9fMPL8m5PbkzOuOOnAjjlfDOxg72OKduCSMDgu7RwBoXOtXU6dClt029Vpu/n55UfZWinb/oTzrssVhbTULb2DjJIRwvEes9Kr5Masnjh5U926Yu3a3C3Fp2rL8zKc/CuoqhzJ4ntJDmSxvadocHgg+ZTr5CfmH0nm8675v1S5n0WzygBdfL2hlqtnqqpmXKcBlOyP8AmP8AuyeryqnkeEnTuuuxoe4tDzd3XSKjF2VZfJpbqat11IyFACUAl/mUgApkEpg2VIglNEJTKXn2VvjZSc1oPWGrn5PJuw+D0WnPbT88qfsq7HHb/BywXZKyJLWZPpXwjFJBpazUZAWlrowb99qIG3SBp0J58fVaYOlnidXR1DXYXwTMcNbXxPa4eUELH02/C3cLfNvN6aWZk00UkVNHIx8kr2EB4BvucQPfvNrAC+u+pW4cFrWRveIh7xmyxzcQeLPdFHK8a8MkkkjyL8WJdLN2hnouX+Q/OqayZhxVkBlOyP8AmI5WT1aVVcjwk6d1z2NT3Foebu66RUYuynL5NLdWK4ddCTroBCgBKkAlMglMAKkQCmiEplLz3K3xspea0HXtWDJ5N2HweixHTUc8qT5mq/F2j/At3QIqiNtIzdcGDcu23S2DCDpxX2K/JqLbKvzDJ1mcuR2G271DbeJfW7n8wxDQq45dYkfTmR5HytkuoeXU0jJZY2kkyuldOxu0gPN7cOG9tqvx563krUmGmyK608h4I6c9DnJcqJmvwMc6lc5RqGvPai+nvje4Hg2WHi4rV3Mrr22gOK3Qo+7Kdkb8xHKyerSqnP4SlTutuxpIDkaiAIJbTuBAOkfhpNYVOOs9Pyz5vNpgVNGC3TDroSJdBEJQCFSACpABTIJTACmUvP8AK3xspOa0HrDVz8nk2YfB6C06anndV6GrTi7R/gS84z/rnMo6SMGzZLud+tgboB4ruulzdxJ4fl5lUSvffCCcIuQOBc/Xyv7IeTK58NTDMwkOjmjeNNr2cNB4j5wrMVuixWjcPofNp/bSDwGiIfssmlaPMAuxn7QyVW7yq47JbMuKlBfdleyId4jlZPVpVTn8JSp3O5i0/cmieLtd7nccTTY/lpE+NaJrqWXNb+40tPlBw0SjFb/UYNI/ab/dWXxfepRH4WTHhwuCCDtGkKnQLdBuugyEoASUAJKkAEpkEpgKZS8/yuPxspOa0HXtXPyeTZh8G9idiM9tT6qoIJ0aHBtj51rxxNdbKZeX9kilkfQ08rA53uRzxK0C5awtwl1uAEfMHBPmU6v6oPFOpeUvnN9BI0EaDbQVzNNCVkGgdU1McbRoDw+R2pscTSC+Rx2ABWYaTayNp1D6BzScXNleQQHEa9eJz3yWPHZ4HlXYzTvUMlV08quE5NOKmj92U7IZ3kOVk9WlVHI8JSp3WnY/Hcah5u7rpFXx+zHyJ/uStpmfNxhbIlTs1FMWG4OG/wBR37Q/unakWX1yRbusoKoP0d6618JNweNp2hZrU0lNT11EiEqSRCUGElMEsjZaG2AnZbyqPWNHWUw2noUZuNPNs5nNjzrpnaQ1lFRvNtJs2e5t0LJP9V2vH8UbWlP5TnEn9LF0EZnaLX5NEl3MOEuNy25aMdu/afknzFWVvr4lDpZqozNa5xPueldc63UlIST5QQn0YfwfVaD9FmiW9qTHFHiDjHFFFCxzhpDnNaO3PlOjgUq2x08YKeqWnpoGQsEbBZrb69bidZJ4VXvcyBOciAac5TH3ZbsgneQ5WT1eVUcjwlKndZZgu7j0XN3ddIocePhg5E/3JW0si2RCnaJJIrawWwMqcPGL3tqseEHYUWxbXUy67rSlrg4aTcaseojieNnl1LLfHpo7pZcq0StaTsuifg4Px03D0DWqpunCQ2EDZbzlV9R6Hb/ClsaCU/sNPKc8vjRF+7afrSq8fshor4NrA7TJy7/6WLowqP4kaBMSNGQuRoELk9Ebc5OIBtzlNFmM/wA7zHKyeryrPyvBZTul5iyWyRRcVO7rpEcWv9Dn8n2yspZVurVQiSSq6KkjvlVsVN0FQ5jrt0bLawRwEbQoXxxaNStx3ms7anJhuzG7tWYQ4A3Jab6QOEehcjLPTOm2a7jcLuKEAbNIvo03B41mteZEQc8yj3HyEpgJTASg4eU55fGiL920/WlV09kL6+DZsuHSg6xUPBB2ENbcLo453CoeJT0HYkaBC5GgQuT0QHOT0DbnKRMzn6d5jlZPV5Vm5Xgsp3HmVJ3Jo+KB3XSK3h1/oc7k+2VhLIt0Qzor3q6sGFjC42Gm+wJ2mIM8+VkOjQ+QbPkMP6x2n/CqorOT/aD6ogyyvlEglxuxt0B2wDwQNg4lK3GpavTo8ee0W22GQ8sMe3wWjS+PWYifls4YzwbFwc+C2K2pdKtoyV3C9PTxqiI+S38BKkQSmAlM4eV53NJzohaBcuydStAG1xm0AKqk6yRtfXwbKc/hqjnc32V0MHhCq3cN+NXEXEgiEoAS5AC4pg24qcBm8+zvMcrJ6vKsvL8E6dzWZ7+5lJxQnrXrTwo/tQ53J9srF71uiFJIoS4+S5N9AAGsk7Ai94qZqprmtGCI2vodLqc7iZwDj1niTphm3zZJXCbgC1dMQj0HmBxUZmD6EimqJIXiRhs5pvxW2gjaOJU5sVMtemyzHM0n4bfIWVWSMGmzC4NsTphkP+mT4B+SfmXm82K2G/Rb/wCuh8WjcLoqG0NhKYgJTH3eY5w/G6k5pQeshZreTTTxamY/hp+dSnzNXWweEKbdw3VxOukRLoDiUALipA05ylAZvPk70HKSeryrNy/BOndHzRPc2l5E9a9auDH9qHP5PtlcRx3uSQGtFy46A0cJWq1tKYV+UMo4hubAWxg7dDpCNRfxcXSrsOD56rd09IDWuceFa5mIS0nU1E7wSqL5YCfHRP8ABKzTlhIb6Y8CUZILsZgkdTvxgYmkYXsPevjOtp/zQVHPirmpr7/ZbiydM/7NzkbKAlaG4i4hmJj3a5Yxouf1hqPTtXBvSay02qsCowiQpj7vLM6z+NUBBIIoKQgjQQd21hU1jd2mni1k5/DT86l9AXTw+EKb9w3VyE93XQZLoBLpgDipA25yZM5nud6DlZPV5Vl5vgni7gzNaP8AhtMTYAQOJcdAAEr7krRw7f2oj7sPIjeWTtZUum7SMERg3A2vd4bv/WzyrpY8fR/VbuhHxB+iyNi0uKWTk67F1NBRZJib8kHyrn5OTeUlxT0bB8kdCyXy2T0ltpGeCOhU/Uk9GpsnMOwKdc8lpSZRyVbUFtw8hGYU9JO+mkAxYQXhzXHVHKNRP6p1Hi8inycMZa9UL8GWNdMt3R1TZoxI0WxXBadbHg9s0+Rcea9M6ldMfY4U4J5dnZ8aYP3fSdcqafGRpp4tXV6J6gcFVLo+Zq6eD1wpv3NYleh93XQZMSAQlMBc5SBpxQTO56neo5SX1eVZeb4J4u6JmuXSZOpY7YWNiJI2yP3V+k8Q4PnWvgRFcUWnuxcmdZJaGlp2t2LTe82ZpncLOArLYQsIHLPeFkSnwvWe0J7TY3KmYS2dUPkbMVEQI1KdLTCNpZrLOTwQdGtdPj5tfCmUbNrKRhm3KQ2bKWxuvseNEUn2T9FVcvB/qj/H/lvx5PqV/wCXdsisCf3eY5xtDs7aVp0h1HQgjhBnAIWaZ1Zpp4tLXHfFRzqX7K6/G9cKb+Rm6vQh10w4lACXJgDnIBtxThFn88zvUcpL6vKsnO9a3F3DmaO51LyR6160cP0w53J9sr9i0SzpMblXMGlxPVNoSToZFRaqUSnQyKi1U4lKY9VTCWxOKUBArI7hX45VTHyyGWaTC7EBruDbaDrXUx2666Qx5OizU5v5R9004c43kjO4y8bwNDvnFj0rlZ8X07zH2dGk7YXOD43UnNKD1gLDbybMfi0WUDvmo51L9ldjjeqFN/IzdaEIddMBLkAJKYISgG3FOEVBnkd7DlJD/wCPKsfO9a3F3HmaO5tLyJ616v4fqhzuV7pXbStDOdY5KYB+N6hMGlRSKm1REpsMqotVOJTIpVTaqW0hr1Xo9gl1KVUJUmU4bg6Ftw31Kiyozeq/c1aGONo6oCB19QkGmN3pHzq/mYvqYuqO8NXGyblV5wfG6k5pQesBeenydnH4tDlE75qOdS/ZXY4vrhnv5I91pQghKYJdAISmAuKAbcVJFQ53new/bk9XlWLnetbi7nczT3NpeRPWvV3D9UMPJ9srgOWvTMIOUdEda9KYI/G9VTBpUUqqmoS4plVaqW0uOXjVU1PYy9R0JlDqhdXUU2ZXLVOSCWmzh2wI1hwNwfMunhtuNK6W6bKqprRU5y0E+i8tDk8uA+S8VADh0grzXJxTiyzWf93o8FurHtqspnfNRzqX0NXV4vqhXfyRrrShDrpghKAG6YASgAc5NFQ52ne305PV5Fi53rW4u53M89zaXkT1r1fw/VDDyfbK4utbMUORohB6WkTrHqEwD0cirmoSY5VCantKjmVM1PZ9sqh0o7NyvUqwhZVV7LhasU6UT3YbJkeDOWnGy1MRxDd2Ll/qWpzbei4E7wt5lQ76qOdSehq28T1Qd/JFv/8AVoRh10wG6AQlAC4oBklMlJnWd7fTk9XlWLnetbi7nc0D3NpeRPWvWjg+qGHk+yVriWxn+xMSNIlDkaIYeo6RONeo6I+yRQmpJDJeNQmoPNm41X0grpUulCyPMbq2qq3ZjY22znpuSpD/AN9i5HN9jv8A6d6Gxyr+dVHOZPQ1dDieqFl/JGK0IQQlMwkoBCUA24oBtzkyUedR3t9OT1eVYud61uLudzSPc6l5I9Y9aeD6oYeT7JWhctrP9iYkydjRoih6WiGHpaRONeozCJxsnGozAOiVR6QLdVHpQl2NEwqt2ZcfGel5Gj69i4nN9jv/AKd6Guysd9VHOpPQ1dHieqFl/JDJWj7oQVwIF9FjpFtvClswkqWgAlAA4oBl5QSlznO9/pydRIsXN9a3F3Hmme51NyR6xy2cD0wxcn2StC5bWaOwS5PQJiT0i7GloCD0aIQelpEYelohiRR0RRJxpaIYkSmFUwoIzfOal5Gj69i89zfa736f6Wvyud9VHOZPQ1dHi+qE7+SGStH3Qhzn/wBtF76hb5kaMBKewAlAA4oBh7kEp85Tvf6cmj/YlWLm+tbi7jzVPc+m5I9Y5beB6YYuT7JWRct0d2aAFylowlylonY0aJ2NGiKHpaIQeo6REHo0Ch6jpETZEphGYVFI6+ctLyNJ17F5vn+53P0/0tjlg77qOcyehq6HF9MHfyQ3FaEIMsdp2jiJbw+VBlLkAJcgGnlANPcglPnGd7/Tk6iRYub61uLuLNY9z6bkj1jlv/T/AEwx8j2SsXOW/TMAuT0YC5PQJiTRdjRoFD0aIuNLQLjUUdOxpFoQkUbITCtya6+cdKf+VSdexeb/AFH3O3wfS2mWTvuo5zJ6GrbxfTAv5IRK0oQYjvtaBrN7AE3O0340GIuQDbnIBt7kAy5yCVGcB3v9N/USrFzfWtxdx5sHeFPyR6xy6H6f6IY+R7JWDnLezG3OU9GAuT0A4k9B2JGgXGjROxpaBcagWiY1EtOxpI6Q8jOvnFTfsUvXsXm/1L3Ovw/U22Wzvup5zJ6GrXxPnFAv5IJctKMwAlANucgAc5IzT3IBl7kbLasy6d7nie7zwyAelY+d69rcXkazPqWyUEVtJixxOHA7GXDzOC3fpmSLYYhj5VP7m1o5y6mmaIA5yloGy5S0CFyegTEjQdiSkOxKMwC4lEiFyiA40viC1ExqEDNqpEmccAab4JKeG40guErCR6eheV/UckWz/Ds8WnTj1L03PSkdDWOdazKkCRjthkDQHM8vagrTwMm6a/COWupUJct8qtm3OQAOcgGnOSM29yAac5JGYRquHdY3xAgGRtg52oPBu2/Fosqs1OumllZ1Z51DVVNBM4MLoiHFj2OFwbHvXg6/8K4uPNfBbUNN8dbx8rIZ7VO2GnP0ZB9pb4/V8kQo/Z0Ic9ajxNP0Se0n/M5fwX7OgTnlP4qDok9pP+Zy/gfs6O9+M/ioOiT2k/5rL+B+zoT34z+Kg6JPaS/msv4H7OjvfjP4qDok9pL+Zy/gfs6O9+U/ioOiT2kfzOT8D9nR3vyn8VB0Se0j+Xyfgfs6O9+M/ioOiT2kv5fJ+D/Z0M1WdNS9paMEV9F42nFbykmyqy/qmXJGjrxaRLYdg3N+Spym2oLDuNGd2kedW62IjjB4dJPkasH/ABT3aJ/EPoquooqiMxzRtkY7SWuG0aiOApUvNZ3Ei0RLH5VzSpoyCx9Q0EkYS9jgPJdpK6WDk5Ld1FqQh+9iE/6s/TF7Cu+vdHph3vVg8ZP0xewj69x0wE5qU/jKjpi9hH17jpgw7NWC/wCUqPrR+yp/VsXTAfelT+Nqfrx+yl9WxagDs0afxlR9aP2U/q2Gh1WYVBUj8Nuz3CMWfiYH22NJDdI8qy5Yi/lCyszXspHdjPJ2nTOOK1N92s9sVYWxaSfBnk7wp+im+6Ufp1HVJfgyyd4U/RTfdI+nUdUu+DLJ3hT9FN90j6dR1ST4M8neFP0U33SPp1HVJfgyyd4U/RTfdI+nUdUu+DLJ3hT9FN90j6dR1S74MsneFP0U33SPp1HVJPgzyd4U/RTfdI+nUdUrPIfYoyVI4uf7odhIOEPijB02sS1gNvnULVivYbl6ZknJdPRwtgpoY4ImXsyMWF9pPCePWqbWme6cP//Z" >
+    
+      <h5>Infinix 10</h5>
+      <p>From <span>₹45,900</span></p>
+  </div></a>
+  </div>
+  </div>
+
+
+
+
+<!-- /second line -->
+ <div class="row g-4 mt-2">
+  <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+   <div class="card">
+    <img src="https://rukminim1.flixcart.com/image/220/220/xif0q/mobile/z/u/l/-original-imahhqjwyzsjyfvn.jpeg?q=60"  >
+
+    
+    <h5>moto g 57</h5>
+      <p>From <span>₹21,900</span></p>
+   
+  </div></a>
+  </div>
+
+
+  <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+   <div class="card">
+    <img src="https://rukminim1.flixcart.com/image/220/220/xif0q/mobile/f/a/6/-original-imahfz2tnafhmagr.jpeg?q=60"  >
+   <h5>Galaxy 524</h5>
+      <p>>From <span>₹64,900</span></p>
+  </div></a>
+  </div>
+
+  <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+   <div class="card">
+    <img src="https://rukminim1.flixcart.com/image/220/220/xif0q/mobile/o/2/g/-original-imahbr2cz5apcwze.jpeg?q=60"  >
+    
+      <h5>POCO C75</h5>
+      <p>From <span>₹14,900</span></p>
+   
+  </div></a>
+</div>
+</div>
+
+<!-- THIRD LINE -->
+    <div class="row g-4 mt-2">
+      <div class="col-md-4">
+          <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/w/m/-original-imahed526jhtgj7k.jpeg?q=70"   >
+    
+      <h5>Acer SUper 5G</h5>
+      <p>From <span>₹10,900</span></p>
+  </div></a>
+   </div>
+
+   <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/n/g/9/i1-touch-and-type-phone-i1-i-kall-original-imah79n3pugthm68.jpeg?q=70" >
+ <h5>Jio Bharat V4 4G</h5>
+      <p>From <span>₹725</span></p>
+  </div></a>
+ </div>
+
+  <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/shopsy-cases-covers/l/3/c/02d2-cf-rmx3999-flip-cover-haniry-original-imah3grj5g3nmjd2.jpeg?q=70" >
+    
+      <h5>Realme 12 5G mobile</h5>
+      <p>From <span>₹17,725</span></p>
+  </div></a>
+  </div>
+  </div>
+
+
+  <!-- FOUR LINE -->
+    <div class="row g-4 mt-2">
+      <div class="col-md-4">
+          <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/a/b/k/-original-imahjyh2f3jthhvg.jpeg?q=70"   >
+    
+      <h5>MOTOROLA Signature</h5>
+      <p>From <span>₹64,999</span></p>
+  </div></a>
+   </div>
+
+   <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="http://rukminim2.flixcart.com/image/312/312/xif0q/mobile/r/8/1/-original-imahfz2tenzpsd3p.jpeg?q=70" >
+ <h5>Samsung Galaxy S24 5G Snapdragon </h5>
+      <p>From <span>₹47,999</span></p>
+  </div></a>
+ </div>
+
+  <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/z/9/n/-original-imahgdr4shzrvcfh.jpeg?q=70" >
+    
+      <h5>realme P4x 5G</h5>
+      <p>From <span>₹18,499</span></p>
+  </div></a>
+  </div>
+  </div>
+
+  
+  <!-- FIVE LINE -->
+    <div class="row g-4 mt-2">
+      <div class="col-md-4">
+          <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/4/b/p/-original-imahgzhpc8abrthu.jpeg?q=70"   >
+    
+      <h5>Ai+ Pulse </h5>
+      <p>From <span>₹6,999</span></p>
+  </div></a>
+   </div>
+
+   <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/r/p/-original-imahdsbnk9ya4e3z.jpeg?q=70" >
+ <h5>Ai+ Nova 5G </h5>
+      <p>From <span>₹9,999</span></p>
+  </div></a>
+ </div>
+
+  <div class="col-md-4">
+      <a href="card.html" class="no-underline">
+  <div class="card">
+    <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/i/q/r/-original-imahfvrmzd46wgw5.jpeg?q=70" >
+    
+      <h5>Samsung Galaxy F06 5G</h5>
+      <p>From <span>₹8,999</span></p>
+  </div></a>
+  </div>
+  </div>
+
+  </div>
+
+  
+<!-- javascript -->
+
+<script>
+function toggleFilter(bodyId, arrowId) {
+  const body = document.getElementById(bodyId);
+  const arrow = document.getElementById(arrowId);
+  if (body.style.display === "block" || body.style.display === "") {
+    body.style.display = "none";
+    arrow.textContent = "▼";
+  } else {
+    body.style.display = "block";
+    arrow.textContent = "⌃";
+  }
+}
+</script>
+
+
+
+
+
+
+ 
