@@ -11,7 +11,7 @@ if (isset($_GET['search'])) {
 if ($search !== '') {
 
     $stmt = $conn->prepare(
-        "SELECT product_id FROM product WHERE name = ? LIMIT 1"
+        "SELECT product_id FROM products WHERE name = ? LIMIT 1"
     );
     $stmt->bind_param("s", $search);
     $stmt->execute();

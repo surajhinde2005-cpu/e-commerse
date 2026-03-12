@@ -1,4 +1,5 @@
-<?php
+<?php include "navbar.php"; ?>
+s<?php
 // if (!isset($_SESSION['user_id'])) {
 //   header("Location: userlogin.php");
 //   exit;
@@ -8,7 +9,6 @@ $guest = !isset($_SESSION['user_id']);
 
 
 
-session_start();
 
 
 $total = 0;

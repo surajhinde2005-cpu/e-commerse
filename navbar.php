@@ -1,4 +1,20 @@
 <?php
+include "dbconne.php";
+
+$site_name = "My Website";
+$site_logo = "uploads/default.png";
+
+$result = $conn->query("SELECT * FROM settings LIMIT 1");
+
+if($result && $result->num_rows > 0){
+    $data = $result->fetch_assoc();
+    $site_name = $data['site_name'] ?? $site_name;
+    $site_logo = $data['logo'] ?? $site_logo;
+}
+?>
+
+
+<?php
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
@@ -16,6 +32,9 @@ if(isset($_SESSION['user_id'])){
 }
 ?>
 
+<?php
+include "config-site.php";
+?>
 
 <style>
 /* ===== NAVBAR STYLES ONLY ===== */
@@ -38,12 +57,30 @@ if(isset($_SESSION['user_id'])){
   align-items:center;
 }
 
+/* Logo container */
 .logo a{
-  font-size:28px;
-  font-weight:800;
-  color:#ffd814;
+  display:flex;
+  align-items:center;
+  gap:10px;
   text-decoration:none;
 }
+
+/* Logo image */
+.logo img{
+  height:42px;
+  width:auto;
+  object-fit:contain;
+  border-radius:8px;
+}
+
+/* Site name */
+.logo span{
+  font-size:26px;
+  font-weight:800;
+  color:#ffd814;
+  letter-spacing:1px;
+}
+
 
 .nav-right > *{
   margin-left:20px;
@@ -120,7 +157,11 @@ if(isset($_SESSION['user_id'])){
 
   <div class="nav-left">
     <div class="logo">
-      <a href="frontpage.php">ShopNow</a>
+      <a href="frontpage.php" class="logo d-flex align-items-center gap-2">
+    <img src="<?= htmlspecialchars($site_logo) ?>" height="40">
+    <span><?= htmlspecialchars($site_name) ?></span>
+</a>
+
     </div>
   </div>
 
@@ -133,6 +174,7 @@ if(isset($_SESSION['user_id'])){
     <a href="frontpage.php">Home</a>
     <a href="#products">Products</a>
     <a href="cart.php">Cart</a>
+     <a href="about.php">About Us</a>
 
   <?php if(isset($_SESSION['user_id'])): ?>
   <div class="user-menu" id="userMenu">

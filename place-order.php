@@ -2,119 +2,140 @@
 session_start();
 include "dbconne.php";
 
-/* =========================
-   BASIC CART TOTAL
-========================= */
-$total = 0;
-if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
-  foreach ($_SESSION['cart'] as $item) {
-    if (isset($item['price'], $item['qty'])) {
-      $total += $item['price'] * $item['qty'];
-    }
-  }
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    die("❌ Please login first");
 }
 
-/* =========================
-   FORM SUBMIT CHECK
-========================= */
+$user_id = $_SESSION['user_id'];
+
+// Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  header("Location: checkout.php");
-  exit;
+    header("Location: checkout.php");
+    exit;
 }
 
-/* =========================
-   USER INPUT
-========================= */
-$fname   = $_POST['fname'];
-$lname   = $_POST['lname'];
-$email   = $_POST['email'];
-$phone   = $_POST['phone'];
-$address = $_POST['address'];
-$amount  = $total;
+// ----------------------------
+// CALCULATE CART TOTAL
+// ----------------------------
 
-/* =========================
-   PAYMENT SCREENSHOT SECURITY
-========================= */
+if (!isset($_SESSION['user_id'])) die("Please login first");
+
+// Get user input
+$fname = $_POST['fname'];
+$lname = $_POST['lname'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
+$address = $_POST['address'];
+
+// Get amount from form, NOT from session
+$amount = isset($_POST['amount']) ? (float)$_POST['amount'] : 0;
+if ($amount <= 0) die("Invalid amount");
+
+// Handle payment screenshot
+$file = $_FILES['payment_image'];
+// (validate upload and move to $uploadPath)
+
+// Insert order
+$stmt = $conn->prepare("
+    INSERT INTO orders
+    (user_id,fname,lname,email,phone,address,amount,payment_image)
+    VALUES (?,?,?,?,?,?,?,?)
+");
+
+$stmt->bind_param("isssssds", $_SESSION['user_id'], $fname, $lname, $email, $phone, $address, $amount, $uploadPath);
+$stmt->execute();
+
+// Clear cart
+unset($_SESSION['cart']);
+
+header("Location: checkout.php?success=1");
+exit;
+
+
+// ----------------------------
+// HANDLE PAYMENT IMAGE
+// ----------------------------
 if (!isset($_FILES['payment_image'])) {
-  die("❌ Payment screenshot is required");
+    die("❌ Payment screenshot is required");
 }
 
 $file = $_FILES['payment_image'];
 
-/* 1️⃣ Upload error */
+// Check upload errors
 if ($file['error'] !== UPLOAD_ERR_OK) {
-  die("❌ File upload error");
+    die("❌ File upload error");
 }
 
-/* 2️⃣ File size (max 2MB) */
+// Check file size (max 2MB)
 if ($file['size'] > 2 * 1024 * 1024) {
-  die("❌ Screenshot too large. Max 2MB allowed.");
+    die("❌ Screenshot too large. Max 2MB allowed.");
 }
 
-/* 3️⃣ Validate REAL image */
+// Validate real image
 $imageInfo = getimagesize($file['tmp_name']);
 if ($imageInfo === false) {
-  die("❌ Invalid image file");
+    die("❌ Invalid image file");
 }
 
-/* 4️⃣ Allow only JPG & PNG */
+// Only allow JPG or PNG
 $allowedTypes = ['image/jpeg', 'image/png'];
 if (!in_array($imageInfo['mime'], $allowedTypes)) {
-  die("❌ Only JPG or PNG payment screenshots allowed");
+    die("❌ Only JPG or PNG allowed");
 }
 
-/* 5️⃣ Resolution check */
-$width  = $imageInfo[0];
-$height = $imageInfo[1];
-if ($width < 300 || $height < 300) {
-  die("❌ Invalid screenshot resolution");
-}
-
-/* 6️⃣ Secure filename */
+// Secure filename
 $ext = ($imageInfo['mime'] === 'image/png') ? 'png' : 'jpg';
 $newName = 'payment_' . time() . '_' . rand(1000,9999) . '.' . $ext;
 
-/* 7️⃣ Upload directory */
+// Upload directory
 $uploadDir = "uploads/payments/";
 if (!is_dir($uploadDir)) {
-  mkdir($uploadDir, 0777, true);
+    mkdir($uploadDir, 0777, true);
 }
 
 $uploadPath = $uploadDir . $newName;
 
 if (!move_uploaded_file($file['tmp_name'], $uploadPath)) {
-  die("❌ Failed to save payment screenshot");
+    die("❌ Failed to save payment screenshot");
 }
 
-/* =========================
-   SAVE ORDER
-========================= */
+// ----------------------------
+// INSERT INTO DATABASE
+// ----------------------------
 $stmt = $conn->prepare("
-  INSERT INTO orders 
-  (first_name, last_name, email, phone, address, amount, payment_image, payment_status, created_at)
-  VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', NOW())
+    INSERT INTO orders
+    (user_id, fname, lname, email, phone, address, amount, payment_image)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
 $stmt->bind_param(
-  "sssssd s",
-  $fname,
-  $lname,
-  $email,
-  $phone,
-  $address,
-  $amount,
-  $newName
+    "isssssds", // i=integer, s=string, d=double
+    $user_id,
+    $fname,
+    $lname,
+    $email,
+    $phone,
+    $address,
+    $amount,
+    $uploadPath
 );
 
-$stmt->execute();
+if (!$stmt->execute()) {
+    die("Execute failed: " . $stmt->error);
+}
 
-/* =========================
-   CLEAR CART
-========================= */
+// ----------------------------
+// CLEAR CART
+// ----------------------------
 unset($_SESSION['cart']);
 
-/* =========================
-   REDIRECT
-========================= */
+// ----------------------------
+// REDIRECT WITH SUCCESS
+// ----------------------------
 header("Location: checkout.php?success=1");
 exit;

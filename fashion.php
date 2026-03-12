@@ -515,10 +515,11 @@ body {
 
 .product-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* ⬅ bigger cards */
+  gap: 35px; /* more space */
   align-items: stretch;
 }
+
 
 /* Product Card (inherits your .card style) */
 .product-card {
@@ -529,10 +530,11 @@ body {
 
 /* Image fix */
 .product-card img {
-  height: 220px;
+  height: 280px; /* ⬅ bigger image */
   object-fit: contain;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
+
 
 /* Card body spacing */
 .product-card .card-body {
@@ -594,14 +596,23 @@ body {
 /* share */
 .share-btn{
   position:absolute;
-  top:1px;
-  right:70px;
+  top:340px;
+  right:10px;
   font-size:30px;
+  background: rgba(255,255,255,0.9);
+  border-radius:50%;
+  padding:8px 10px;
+  font-size:18px;
   cursor:pointer;
-  color:#ca1414;
+  color:#2874f0;           /* Flipkart blue */
+  transition: all 0.3s ease;
+  user-select:none;
 }
 .share-btn:hover{
-  color:#2874f0;
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(40,116,240,0.45);
+  color:#1a5fd1;
+  
 }
 
 
@@ -610,7 +621,6 @@ body {
   width: 100%;
   cursor: pointer;
 }
-
 </style>
 <body>
 
@@ -636,7 +646,7 @@ body {
   </div>
 
   <div class="category-item">
-    <img src="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/71050627a56b4693.png" />
+    <img src="https://rukminim1.flixcart.com/fk-p-flap/98/98/image/e355dd8cb732d920.jpg?q=80" />
     <span><a href="home.php" class="no-underline">Home & Kitchen</a></span>
   </div>
 </div>
@@ -644,209 +654,6 @@ body {
 
 
 
-<div class="main-layout">
-
-  <!-- LEFT SIDEBAR -->
-  <div class="sidebar">
-    <h4 class="filter-title">Filters</h4>
-
-    <div class="filter-section">
-      <h6>CATEGORIES</h6>
-      <p class="category">‹ Fashion</p>
-      <strong>Fashion</strong>
-    </div>
-
-     
-    <!-- gender -->
-       <div class="filter-section">
-      <div class="filter-header" onclick="toggleFilter('ramBody','ramArrow')">
-        <span>GENDER</span>
-        <span id="ramArrow" class="arrow">▼</span>
-      </div>
-
-      <div id="ramBody" class="filter-body" style="display:block;">
-        <label><input type="checkbox"> WOMEN</label>
-        <label><input type="checkbox"> MEN</label>
-        <label><input type="checkbox"> KID</label>
-      </div>
-    </div>
-
-    <!-- BRAND FILTER -->
-   <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('brandBody','brandArrow')">
-    <span>BRAND</span>
-    <span id="brandArrow" class="arrow">▼</span>
-  </div>
-
-  <div id="brandBody" class="filter-body">
-
-    <label><input type="checkbox" class="filter" data-type="brand" value="AADESH ENTERPRISE"> AADESH ENTERPRISE</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="AADITRY FASHION"> AADITRY FASHION</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A Asma dresses"> A Asma dresses</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A Flash"> A Flash</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A I Fashion"> A I Fashion</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A J Fashion Hub"> A J Fashion Hub</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A K Daller Fashion"> A K Daller Fashion</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A K collection"> A K collection</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A K FASHION"> A K FASHION</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A M Enterprises"> A M Enterprises</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A MODERN FASHION"> A MODERN FASHION</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A R Fashion"> A R Fashion</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A R J FASHION"> A R J FASHION</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A R WORLD FASHION"> A R WORLD FASHION</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A S Creation"> A S Creation</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A S fashion"> A S fashion</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="A to Z unique fashion"> A to Z unique fashion</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="24Hour Fashion"> 24Hour Fashion</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="3Buddy Fashion"> 3Buddy Fashion</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="3colors"> 3colors</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="3DTRENDS"> 3DTRENDS</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="4K FASHION"> 4K FASHION</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="69 FASHION STREET"> 69 FASHION STREET</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="7 CUTS"> 7 CUTS</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="7800 GROUP"> 7800 GROUP</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="9&4fashion"> 9&4fashion</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="#"> #</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="1 Stop Fashion"> 1 Stop Fashion</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="100LUCK"> 100LUCK</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="12 O'Clock"> 12 O'Clock</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="1DAYJEANS"> 1DAYJEANS</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="1stLov"> 1stLov</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="2 Pc Collection"> 2 Pc Collection</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="W"> W</label>
-
-    <div class="more-link">MORE</div>
-  </div>
-</div>
-
-
-    <!-- SIZE -->
-  <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('sizeBody','sizeArrow')">
-    <span>SIZE</span>
-    <span id="sizeArrow" class="arrow">▼</span>
-  </div>
-
-  <div id="sizeBody" class="filter-body" style="display:block;">
-    <label><input type="checkbox" class="filter" data-type="size" value="XS"> XS</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="S"> S</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="M"> M</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="L"> L</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="XL"> XL</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="2XL"> 2XL</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="3XL"> 3XL</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="4XL"> 4XL</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="5XL"> 5XL</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="6XL"> 6XL</label>
-    <label><input type="checkbox" class="filter" data-type="size" value="7XL"> 7XL</label>
-  </div>
-</div>
-
-        <!-- COLOR-->
-   <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('colorBody','colorArrow')">
-    <span>COLOR</span>
-    <span id="colorArrow" class="arrow">▼</span>
-  </div>
-
-  <div id="colorBody" class="filter-body" style="display:block;">
-    <label>
-      <input type="checkbox" class="filter" data-type="color" value="Pink"> Pink
-    </label>
-    <label>
-      <input type="checkbox" class="filter" data-type="color" value="Black"> Black
-    </label>
-    <label>
-      <input type="checkbox" class="filter" data-type="color" value="Blue"> Blue
-    </label>
-    <label>
-      <input type="checkbox" class="filter" data-type="color" value="Multicolor"> Multicolor
-    </label>
-    <label>
-      <input type="checkbox" class="filter" data-type="color" value="White"> White
-    </label>
-    <label>
-      <input type="checkbox" class="filter" data-type="color" value="Maroon"> Maroon
-    </label>
-  </div>
-</div>
-
-
- <!-- FABRIC -->
-    <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('fabricBody','fabricArrow')">
-    <span>FABRIC</span>
-    <span id="fabricArrow" class="arrow">▼</span>
-  </div>
-
-  <div id="fabricBody" class="filter-body" style="display:block;">
-    <label><input type="checkbox" class="filter" data-type="fabric" value="Pure Cotton"> Pure Cotton</label>
-    <label><input type="checkbox" class="filter" data-type="fabric" value="Cotton Blend"> Cotton Blend</label>
-    <label><input type="checkbox" class="filter" data-type="fabric" value="Viscose Rayon"> Viscose Rayon</label>
-    <label><input type="checkbox" class="filter" data-type="fabric" value="Cotton Rayon"> Cotton Rayon</label>
-    <label><input type="checkbox" class="filter" data-type="fabric" value="Crepe"> Crepe</label>
-    <label><input type="checkbox" class="filter" data-type="fabric" value="Georgette"> Georgette</label>
-  </div>
-</div>
-
-
-<!-- TYPE -->
-    <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('typeBody','typeArrow')">
-    <span>TYPE</span>
-    <span id="typeArrow" class="arrow">▼</span>
-  </div>
-
-  <div id="typeBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="type" value="Straight"> Straight</label>
-    <label><input type="checkbox" class="filter" data-type="type" value="Anarkali"> Anarkali</label>
-    <label><input type="checkbox" class="filter" data-type="type" value="A-line"> A-line</label>
-    <label><input type="checkbox" class="filter" data-type="type" value="Flared"> Flared</label>
-    <label><input type="checkbox" class="filter" data-type="type" value="Kurta, Trouser/Pant & Dupatta Set">
-      Kurta, Trouser/Pant & Dupatta Set
-    </label>
-    <label><input type="checkbox" class="filter" data-type="type" value="Kurta and Pant Set">
-      Kurta and Pant Set
-    </label>
-  </div>
-</div>
-
-
-    <!-- OCCASION -->
-   <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('occasionBody','occasionArrow')">
-    <span>OCCASION</span>
-    <span id="occasionArrow" class="arrow">▼</span>
-  </div>
-
-  <div id="occasionBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="occasion" value="Casual"> Casual</label>
-    <label><input type="checkbox" class="filter" data-type="occasion" value="Festive"> Festive</label>
-    <label><input type="checkbox" class="filter" data-type="occasion" value="Festive & Party"> Festive & Party</label>
-    <label><input type="checkbox" class="filter" data-type="occasion" value="Formal"> Formal</label>
-    <label><input type="checkbox" class="filter" data-type="occasion" value="Wedding"> Wedding</label>
-    <label><input type="checkbox" class="filter" data-type="occasion" value="Ethnic"> Ethnic</label>
-  </div>
-</div>
-
-
-     <!-- OFFERS-->
-<div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('offerBody','offerArrow')">
-    <span>OFFERS</span>
-    <span id="offerArrow" class="arrow">▼</span>
-  </div>
-
-  <div id="offerBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="discount" value="10%"> 10% or more</label>
-    <label><input type="checkbox" class="filter" data-type="discount" value="20%"> 20% or more</label>
-    <label><input type="checkbox" class="filter" data-type="discount" value="30%"> 30% or more</label>
-    <label><input type="checkbox" class="filter" data-type="discount" value="40%"> 40% or more</label>
-    <label><input type="checkbox" class="filter" data-type="discount" value="50%"> 50% or more</label>
-  </div>
-</div>
-
-  </div>
   <!-- Right sidebar -->
 
 
@@ -862,7 +669,7 @@ body {
 
       <?php
       $q = $conn->query(
-  "SELECT * FROM product 
+  "SELECT * FROM products
    WHERE status=1 AND category='fashion'"
 );
 while($p = $q->fetch_assoc()):
@@ -899,7 +706,7 @@ while($p = $q->fetch_assoc()):
 
   </div>
 </div>
-</div>
+
 
 
 

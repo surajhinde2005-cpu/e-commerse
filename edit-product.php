@@ -10,14 +10,16 @@ include "dbconne.php";
 $id = (int)($_GET['id'] ?? 0);
 if($id == 0) die("Invalid Product");
 
-$p = $conn->query("SELECT * FROM product WHERE product_id=$id")->fetch_assoc();
+// Fetch main product
+$p = $conn->query("SELECT * FROM products WHERE product_id=$id")->fetch_assoc();
 if(!$p) die("Product not found");
+
+// Fetch sub-images
+$subImages = $conn->query("SELECT * FROM product_images WHERE product_id=$id");
 
 /* FIX CATEGORY */
 $selectedCategory = $p['category'];
-if ($selectedCategory === 'Kitchen') {
-  $selectedCategory = 'Kitchen & Home';
-}
+if ($selectedCategory === 'Kitchen') $selectedCategory = 'Kitchen & Home';
 
 /* UPDATE */
 if(isset($_POST['update'])){
@@ -67,7 +69,7 @@ if(isset($_POST['update'])){
   }
 
   $conn->query("
-    UPDATE product SET
+    UPDATE products SET
     name='$name',
     price='$price',
     category='$category',
@@ -97,10 +99,44 @@ if(isset($_POST['update'])){
     WHERE product_id=$id
   ");
 
+  // HANDLE NEW SUB IMAGES
+  if(isset($_FILES['sub_images'])){
+    $files = $_FILES['sub_images'];
+    for($i=0; $i<count($files['name']); $i++){
+      if(!empty($files['name'][$i])){
+        $filename = time().'_'.$files['name'][$i];
+        $tmpname = $files['tmp_name'][$i];
+        $target = "uploads/".$filename;
+
+if(move_uploaded_file($tmpname, $target)){
+  $stmt = $conn->prepare("INSERT INTO product_images (product_id, image) VALUES (?, ?)");
+  $stmt->bind_param("is", $id, $filename);   // ✅ SAVE ONLY FILENAME
+
+          $stmt->execute();
+        }
+      }
+    }
+  }
+
   header("Location: products.php");
   exit;
 }
+
+/* HANDLE DELETE SUB IMAGE */
+if(isset($_GET['delete_img'])){
+  $imgId = (int)$_GET['delete_img'];
+  $img = $conn->query("SELECT * FROM product_images WHERE id=$imgId")->fetch_assoc();
+  if($img){
+    @unlink("uploads/".$img['image']);   // ✅ correct
+
+    $conn->query("DELETE FROM product_images WHERE id=$imgId");
+    header("Location: edit-product.php?id=$id");
+    exit;
+  }
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -131,17 +167,42 @@ if(isset($_POST['update'])){
 
 <!-- PRICE -->
 <div class="mb-3">
-  <label>Price</label>
-  <input type="number" name="price" class="form-control"
-         value="<?= $p['price'] ?>" required>
+  <label for="price" class="form-label">Price</label>
+  <input type="number" 
+         id="price"
+         name="price" 
+         class="form-control"
+         value="<?= isset($p['price']) ? htmlspecialchars($p['price']) : '' ?>" 
+         required
+         step="any"> <!-- step="any" allows any decimal or integer -->
 </div>
 
+
 <!-- IMAGE -->
+<!-- MAIN IMAGE -->
 <div class="mb-3">
-  <label>Image (leave blank to keep old)</label><br>
+  <label>Main Product Image</label><br>
   <img src="uploads/<?= $p['image'] ?>" width="120"><br><br>
   <input type="file" name="image" class="form-control">
 </div>
+
+<!-- SUB IMAGES -->
+<div class="mb-3">
+  <label>Sub Images</label><br>
+  <?php while($img = $subImages->fetch_assoc()): ?>
+    <div style="display:inline-block; margin:5px; text-align:center;">
+      <img src="<?= $img['image'] ?>" width="80" style="display:block;">
+      <a href="?id=<?= $id ?>&delete_img=<?= $img['id'] ?>" class="btn btn-sm btn-danger mt-1"
+         onclick="return confirm('Delete this image?')">Delete</a>
+    </div>
+  <?php endwhile; ?>
+</div>
+
+<div class="mb-3">
+  <label>Add New Sub Images</label>
+  <input type="file" name="sub_images[]" class="form-control" multiple>
+</div>
+
 
 <!-- ================= MOBILE ================= -->
 <?php if($selectedCategory == 'Mobile'): ?>
@@ -251,7 +312,7 @@ if(isset($_POST['update'])){
 <?php endif; ?>
 
 <button name="update" class="btn btn-success">Update Product</button>
-<a href="products.php" class="btn btn-secondary">Back</a>
+<a href="product.php" class="btn btn-secondary">Back</a>
 
 </form>
 

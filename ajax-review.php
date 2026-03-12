@@ -10,13 +10,10 @@ $product_id = (int)$data['product_id'];
 $rating = (int)$data['rating'];
 $comment = trim($data['comment']);
 
-$conn->query("
- INSERT INTO reviews(product_id,user_id,user_name,rating,comment)
- VALUES(
-   $product_id,
-   {$_SESSION['user_id']},
-   '{$_SESSION['user_name']}',
-   $rating,
-   '$comment'
- )
+$stmt = $conn->prepare("
+    INSERT INTO reviews(product_id, user_id, rating, comment, created_at)
+    VALUES (?, ?, ?, ?, NOW())
 ");
+
+$stmt->bind_param("iiis", $product_id, $_SESSION['user_id'], $rating, $comment);
+$stmt->execute();

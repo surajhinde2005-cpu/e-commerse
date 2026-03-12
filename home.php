@@ -515,10 +515,11 @@ body {
 
 .product-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* ⬅ bigger cards */
+  gap: 35px; /* more space */
   align-items: stretch;
 }
+
 
 /* Product Card (inherits your .card style) */
 .product-card {
@@ -529,10 +530,11 @@ body {
 
 /* Image fix */
 .product-card img {
-  height: 220px;
+  height: 280px; /* ⬅ bigger image */
   object-fit: contain;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
+
 
 /* Card body spacing */
 .product-card .card-body {
@@ -594,14 +596,23 @@ body {
 /* share */
 .share-btn{
   position:absolute;
-  top:1px;
-  right:70px;
+  top:340px;
+  right:10px;
   font-size:30px;
+  background: rgba(255,255,255,0.9);
+  border-radius:50%;
+  padding:8px 10px;
+  font-size:18px;
   cursor:pointer;
-  color:#ca1414;
+  color:#2874f0;           /* Flipkart blue */
+  transition: all 0.3s ease;
+  user-select:none;
 }
 .share-btn:hover{
-  color:#2874f0;
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(40,116,240,0.45);
+  color:#1a5fd1;
+  
 }
 
 
@@ -610,7 +621,6 @@ body {
   width: 100%;
   cursor: pointer;
 }
-
 </style>
 <body>
 
@@ -636,7 +646,7 @@ body {
   </div>
 
   <div class="category-item">
-    <img src="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/71050627a56b4693.png" />
+    <img src="https://rukminim1.flixcart.com/fk-p-flap/98/98/image/e355dd8cb732d920.jpg?q=80" />
     <span><a href="home.php" class="no-underline">Home & Kitchen</a></span>
   </div>
 </div>
@@ -644,117 +654,7 @@ body {
 
 
 
-<div class="main-layout">
 
-  <!-- LEFT SIDEBAR -->
-  <div class="sidebar">
-    <h4 class="filter-title">Filters</h4>
-
-    <div class="filter-section">
-      <h6>CATEGORIES</h6>
-      <p class="category">‹ Home & Kitchen</p>
-      <strong>Home & Kitchen</strong>
-    </div>
-
-     
-    <!-- CATEGORY -->
-<div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('hkCatBody','hkCatArrow')">
-    <span>CATEGORY</span>
-    <span id="hkCatArrow" class="arrow">▼</span>
-  </div>
-  <div id="hkCatBody" class="filter-body">
-    <label>
-      <input type="checkbox" class="filter" data-type="hk_category" value="Home & Kitchen">
-      Home & Kitchen
-    </label>
-  </div>
-</div>
-
-
-    <!-- SUB CATEGORY -->
-  <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('hkSubBody','hkSubArrow')">
-    <span>SUB CATEGORY</span>
-    <span id="hkSubArrow" class="arrow">▼</span>
-  </div>
-  <div id="hkSubBody" class="filter-body">
-    <label>
-      <input type="checkbox" class="filter" data-type="hk_subcategory" value="Kitchen Appliances">
-      Kitchen Appliances
-    </label>
-    <label>
-      <input type="checkbox" class="filter" data-type="hk_subcategory" value="Weighing Scales">
-      Weighing Scales
-    </label>
-  </div>
-</div>
-
-
-
-    <!-- BRAND -->
-  <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('hkBrandBody','hkBrandArrow')">
-    <span>BRAND</span>
-    <span id="hkBrandArrow" class="arrow">▼</span>
-  </div>
-  <div id="hkBrandBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="hk_brand" value="A G Enterprises"> A G Enterprises</label>
-    <label><input type="checkbox" class="filter" data-type="hk_brand" value="AADGEX"> AADGEX</label>
-    <label><input type="checkbox" class="filter" data-type="hk_brand" value="A-man Traders"> A-man Traders</label>
-    <label><input type="checkbox" class="filter" data-type="hk_brand" value="A K KREATIONS"> A K KREATIONS</label>
-    <label><input type="checkbox" class="filter" data-type="hk_brand" value="AAJEE ENTERPRISE"> AAJEE ENTERPRISE</label>
-  </div>
-</div>
-
-
-        <!-- CUSTOMER RATING-->
-  <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('hkRatingBody','hkRatingArrow')">
-    <span>CUSTOMER RATINGS</span>
-    <span id="hkRatingArrow" class="arrow">▼</span>
-  </div>
-  <div id="hkRatingBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="hk_rating" value="4★ & above"> 4★ & above</label>
-    <label><input type="checkbox" class="filter" data-type="hk_rating" value="3★ & above"> 3★ & above</label>
-  </div>
-</div>
-
-
-
- <!-- OFFERS -->
-    <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('hkOfferBody','hkOfferArrow')">
-    <span>OFFERS</span>
-    <span id="hkOfferArrow" class="arrow">▼</span>
-  </div>
-  <div id="hkOfferBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="hk_offer" value="Special Price"> Special Price</label>
-    <label><input type="checkbox" class="filter" data-type="hk_offer" value="Buy More, Save More"> Buy More, Save More</label>
-  </div>
-</div>
-
-
-<!-- DISCOUNT -->
-  <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('hkDiscountBody','hkDiscountArrow')">
-    <span>DISCOUNT</span>
-    <span id="hkDiscountArrow" class="arrow">▼</span>
-  </div>
-  <div id="hkDiscountBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="hk_discount" value="10% or more"> 10% or more</label>
-    <label><input type="checkbox" class="filter" data-type="hk_discount" value="20% or more"> 20% or more</label>
-    <label><input type="checkbox" class="filter" data-type="hk_discount" value="30% or more"> 30% or more</label>
-    <label><input type="checkbox" class="filter" data-type="hk_discount" value="40% or more"> 40% or more</label>
-    <label><input type="checkbox" class="filter" data-type="hk_discount" value="50% or more"> 50% or more</label>
-  </div>
-</div>
-
-
-
-   
-
-  </div>
   <!-- Right sidebar -->
 
 
@@ -770,7 +670,7 @@ body {
 
       <?php
       $q = $conn->query(
-  "SELECT * FROM product 
+  "SELECT * FROM products 
    WHERE status=1 AND category='Home & Kitchen'"
 );
 while($p = $q->fetch_assoc()):
@@ -807,7 +707,7 @@ while($p = $q->fetch_assoc()):
 
   </div>
 </div>
-</div>
+
 
 
 

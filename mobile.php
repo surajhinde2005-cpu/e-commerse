@@ -11,7 +11,7 @@ include "dbconne.php";
 $q = mysqli_query($conn,
   "SELECT * FROM products
    WHERE category='mobile' AND status=1
-   ORDER BY id DESC"
+   ORDER BY product_id DESC"
 );
 ?>
 <!DOCTYPE html>
@@ -654,7 +654,7 @@ body {
   </div>
 
   <div class="category-item">
-    <img src="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/71050627a56b4693.png" />
+    <img src="https://rukminim1.flixcart.com/fk-p-flap/98/98/image/e355dd8cb732d920.jpg?q=80" />
     <span><a href="home.php" class="no-underline">Home & Kitchen</a></span>
   </div>
 </div>
@@ -662,143 +662,6 @@ body {
 
 
 
-<div class="main-layout">
-
-  <!-- LEFT SIDEBAR -->
-  <div class="sidebar">
-    <h4 class="filter-title">Filters</h4>
-
-    <div class="filter-section">
-      <h6>CATEGORIES</h6>
-      <p class="category">‹ Mobiles & Accessories</p>
-      <strong>Mobiles</strong>
-    </div>
-
-    <!-- BRAND FILTER -->
-    <div class="filter-section">
-      <div class="filter-header" onclick="toggleFilter('brandBody','brandArrow')">
-        <span>BRAND</span>
-        <span id="brandArrow" class="arrow">▼</span>
-      </div>
-
-      <div id="brandBody" class="filter-body">
-        <label>
-  <input type="checkbox" class="filter" data-type="brand" value="Apple"> Apple
-</label>
-<label>
-  <input type="checkbox" class="filter" data-type="brand" value="Samsung"> Samsung
-</label>
-      
-        
-        <label><input type="checkbox"  class="filter" data-type="brand" value="Motorola"> Motorola</label>
-        <label><input type="checkbox"  class="filter" data-type="brand" value="Vivo"> Vivo</label>
-        <label><input type="checkbox"  class="filter" data-type="brand" value="Oppo"> Oppo</label>
-
-        <div class="more-link">136 MORE</div>
-      </div>
-    </div>
-
-    <!-- RAM FILTER -->
-    <div class="filter-section">
-      <div class="filter-header" onclick="toggleFilter('ramBody','ramArrow')">
-        <span>RAM</span>
-        <span id="ramArrow" class="arrow">▼</span>
-      </div>
-
-      <div id="ramBody" class="filter-body" style="display:block;">
-        <label><input type="checkbox"> 4 GB</label>
-        <label><input type="checkbox"> 8 GB and Above</label>
-        <label><input type="checkbox"> 6 GB</label>
-      </div>
-    </div>
-
-        <!-- INTERNAL STORAGE FILTER -->
-    <div class="filter-section">
-      <div class="filter-header" onclick="toggleFilter('storageBody','storageArrow')">
-        <span>INTERNAL STORAGE</span>
-        <span id="storageArrow" class="arrow">▼</span>
-      </div>
-      <div id="storageBody" class="filter-body">
-
-         <label><input type="checkbox">1 GB – 1.9 GB</label>
-         <label><input type="checkbox">2 GB – 3.9 GB</label>
-         <label><input type="checkbox">4 – 7.9 GB</label>
-         <label><input type="checkbox">8 – 15.9 GB</label>
-         <label><input type="checkbox">16 – 31.9 GB</label>
-        <label><input type="checkbox">32 - 63.9 GB</label>
-        <label><input type="checkbox"> 64 - 127.9 GB</label>
-        <label><input type="checkbox"> 128 - 255.9 GB</label>
-        <label><input type="checkbox"> 256 GB & Above</label>
-      </div>
-    </div>
-
- <!-- BATTERY FILTER -->
-    <div class="filter-section">
-      <div class="filter-header" onclick="toggleFilter('batteryBody','batteryArrow')">
-        <span>BATTERY CAPACITY</span>
-        <span id="batteryArrow" class="arrow">▼</span>
-      </div>
-      <div id="batteryBody" class="filter-body">
-        <label><input type="checkbox"> 5000 - 5999 mAh</label>
-        <label><input type="checkbox"> 6000 mAh & Above</label>
-      </div>
-    </div>
-
-<!-- network type -->
-    <div class="filter-section">
-      <div class="filter-header" onclick="toggleFilter('netBody','netArrow')">
-        <span>NETWORK TYPES</span>
-        <span id="netArrow" class="arrow">▼</span>
-      </div>
-      <div id="netBody" class="filter-body">
-        <label><input type="checkbox"> 2G</label>
-        <label><input type="checkbox"> 3G</label>
-        <label><input type="checkbox"> 4G</label>
-        <label><input type="checkbox"> 5G</label>
-      </div>
-    </div>
-
-    <!-- DISCOUNT -->
-    <div class="filter-section">
-      <div class="filter-header" onclick="toggleFilter('DBody','DArrow')">
-        <span>DISCOUNT</span>
-        <span id="DArrow" class="arrow">▼</span>
-      </div>
-      <div id="DBody" class="filter-body">
-        <label><input type="checkbox"> 10%</label>
-        <label><input type="checkbox"> 20%</label>
-        <label><input type="checkbox"> 30%</label>
-        <label><input type="checkbox"> 40%</label>
-        <label><input type="checkbox"> 50%</label>
-      </div>
-    </div>
-
-
-    <!-- price -->
-     <!-- PRICE FILTER -->
-<div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('priceBody','priceArrow')">
-    <span>PRICE</span>
-    <span id="priceArrow" class="arrow">▼</span>
-  </div>
-
-  <div id="priceBody" class="filter-body" style="display:block;">
-    <input
-      type="range"
-      min="0"
-      max="100000"
-      step="1000"
-      id="priceRange"
-      value="100000"
-    >
-
-    <div style="margin-top:10px;font-weight:700;">
-      Up to ₹<span id="priceValue">100000</span>
-    </div>
-  </div>
-</div>
-
-  </div>
 
   <!-- Right sidebar -->
 
@@ -816,7 +679,7 @@ body {
 
       <?php
      $q = $conn->query(
-  "SELECT * FROM product 
+  "SELECT * FROM products 
    WHERE status=1 AND category='mobile'"
 );
 while($p = $q->fetch_assoc()):
@@ -853,7 +716,7 @@ while($p = $q->fetch_assoc()):
 
   </div>
 </div>
-</div>
+
 
 
 

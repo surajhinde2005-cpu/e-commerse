@@ -11,6 +11,6 @@ include "dbconne.php";
 
 $id = (int)$_GET['id'];
 
-$conn->query("DELETE FROM product WHERE product_id=$id");
+$conn->query("DELETE FROM products WHERE product_id=$id");
 
 header("Location: products.php");

@@ -1,9 +1,19 @@
 
 <?php
-session_start();
+
 include "dbconne.php";
 ?>
+
 <?php include "navbar.php"; ?>
+
+<?php
+
+include "dbconne.php";
+include "config-site.php";   // 👈 ADD THIS
+
+
+?>
+
 
 <!-- search bar -->
 <?php
@@ -14,7 +24,7 @@ if(isset($_GET['search'])){
 
 if($search != ''){
   $stmt = $conn->prepare(
-    "SELECT * FROM product 
+    "SELECT * FROM products
      WHERE status = 1 
      AND name LIKE ?"
   );
@@ -23,7 +33,7 @@ if($search != ''){
   $stmt->execute();
   $q = $stmt->get_result();
 } else {
-  $q = $conn->query("SELECT * FROM product WHERE status = 1");
+  $q = $conn->query("SELECT * FROM products WHERE status = 1");
 }
 ?>
 
@@ -701,7 +711,7 @@ h5.section-title{
   </div>
 
   <div class="category-item">
-    <img src="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/71050627a56b4693.png" />
+    <img src="https://rukminim1.flixcart.com/fk-p-flap/98/98/image/e355dd8cb732d920.jpg?q=80" />
     <span><a href="home.php" class="no-underline">Home & Kitchen</a></span>
   </div>
 </div>
@@ -731,7 +741,7 @@ h5.section-title{
       <div class="product-row">
 
         <?php
-        $q = $conn->query("SELECT * FROM product WHERE status=1 AND category='Mobile'");
+        $q = $conn->query("SELECT * FROM products WHERE status=1 AND category='Mobile'");
         while($p = $q->fetch_assoc()):
         ?>
 
@@ -772,7 +782,7 @@ h5.section-title{
 
         <?php
         $q = $conn->query(
-  "SELECT * FROM product 
+  "SELECT * FROM products
    WHERE status=1 AND category='fashion'"
 );
 while($p = $q->fetch_assoc()):
@@ -813,7 +823,7 @@ while($p = $q->fetch_assoc()):
 
         <?php
               $q = $conn->query(
-  "SELECT * FROM product 
+  "SELECT * FROM products
    WHERE status=1 AND category='electronics'"
 );
 while($p = $q->fetch_assoc()):
@@ -855,7 +865,7 @@ while($p = $q->fetch_assoc()):
 
         <?php
  $q = $conn->query(
-  "SELECT * FROM product 
+  "SELECT * FROM products
    WHERE status=1 AND category='Home & Kitchen'"
 );
 while($p = $q->fetch_assoc()):

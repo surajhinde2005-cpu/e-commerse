@@ -42,7 +42,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])):
 $grand_total = 0;
 
 foreach ($_SESSION['cart'] as $pid => $qty):
-  $result = mysqli_query($conn, "SELECT * FROM product WHERE product_id = $pid");
+  $result = mysqli_query($conn, "SELECT * FROM products WHERE product_id = $pid");
   $p = mysqli_fetch_assoc($result);
 
   $total = $p['price'] * $qty;

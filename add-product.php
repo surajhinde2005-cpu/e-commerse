@@ -11,9 +11,8 @@ $selectedCategory = trim($selectedCategory);
 
 /* FIX broken & case */
 if ($selectedCategory === 'Kitchen') {
-  $selectedCategory = 'Kitchen & Home';
+  $selectedCategory = 'Home & Kitchen';
 }
-
 
 if(isset($_POST['add_product'])){
 
@@ -31,7 +30,6 @@ if(isset($_POST['add_product'])){
   $battery  = esc($_POST['battery'] ?? '');
   $network  = esc($_POST['network'] ?? '');
   $discount = esc($_POST['discount'] ?? '');
-
   $gender   = esc($_POST['gender'] ?? '');
   $rating   = esc($_POST['rating'] ?? '');
   $size     = esc($_POST['size'] ?? '');
@@ -65,56 +63,80 @@ if(isset($_POST['add_product'])){
   $hk_offer       = esc($_POST['hk_offer'] ?? '');
   $hk_discount    = esc($_POST['hk_discount'] ?? '');
 
+  // MAIN IMAGE
   $image = time().'_'.$_FILES['image']['name'];
   move_uploaded_file($_FILES['image']['tmp_name'], "uploads/".$image);
 
-  $conn->query("INSERT INTO product SET
-  name='$name',
-  price='$price',
-  category='$category',
-  brand='$brand',
-  ram='$ram',
-  storage='$storage',
-  battery='$battery',
-  network='$network',
-  gender='$gender',
-  discount='$discount',
-  rating='$rating',
-  size='$size',
-  color='$color',
-  occasion='$occasion',
-  fabric='$fabric',
-  type='$type',
-  offers='$offers',
-  new_arrival='$new_arrival',
-  processor='$processor',
-  processor_gen='$processor_gen',
-  processor_brand='$processor_brand',
-  ram_type='$ram_type',
-  storage_type='$storage_type',
-  ssd_capacity='$ssd_capacity',
-  hdd_capacity='$hdd_capacity',
-  screen_size='$screen_size',
-  laptop_type='$laptop_type',
-  os='$os',
-  graphics='$graphics',
-  graphics_memory='$graphics_memory',
-  touch_screen='$touch_screen',
-  `usage`='$usage',
-  features='$features',
-  hk_category='$hk_category',
-  hk_subcategory='$hk_subcategory',
-  hk_brand='$hk_brand',
-  hk_rating='$hk_rating',
-  hk_offer='$hk_offer',
-  hk_discount='$hk_discount',
-  image='$image'
-");
+  // INSERT MAIN PRODUCT
+  $conn->query("INSERT INTO products SET
+    name='$name',
+    price='$price',
+    category='$category',
+    brand='$brand',
+    ram='$ram',
+    storage='$storage',
+    battery='$battery',
+    network='$network',
+    gender='$gender',
+    discount='$discount',
+    rating='$rating',
+    size='$size',
+    color='$color',
+    occasion='$occasion',
+    fabric='$fabric',
+    type='$type',
+    offers='$offers',
+    new_arrival='$new_arrival',
+    processor='$processor',
+    processor_gen='$processor_gen',
+    processor_brand='$processor_brand',
+    ram_type='$ram_type',
+    storage_type='$storage_type',
+    ssd_capacity='$ssd_capacity',
+    hdd_capacity='$hdd_capacity',
+    screen_size='$screen_size',
+    laptop_type='$laptop_type',
+    os='$os',
+    graphics='$graphics',
+    graphics_memory='$graphics_memory',
+    touch_screen='$touch_screen',
+    `usage`='$usage',
+    features='$features',
+    hk_category='$hk_category',
+    hk_subcategory='$hk_subcategory',
+    hk_brand='$hk_brand',
+    hk_rating='$hk_rating',
+    hk_offer='$hk_offer',
+    hk_discount='$hk_discount',
+    image='$image'
+  ");
 
+  // GET LAST INSERTED PRODUCT ID
+  $productId = $conn->insert_id;
 
-  echo "<script>alert('Product Added Successfully');</script>";
+  // HANDLE SUB IMAGES
+  if(isset($_FILES['sub_images'])){
+    $files = $_FILES['sub_images'];
+    for($i=0; $i<count($files['name']); $i++){
+      $filename = time().'_'.$files['name'][$i];
+      $tmpname = $files['tmp_name'][$i];
+      $target = "uploads/".$filename;
+
+if(move_uploaded_file($tmpname, $target)){
+    $stmt = $conn->prepare("INSERT INTO product_images (product_id, image) VALUES (?, ?)");
+    $stmt->bind_param("is", $productId, $filename); // ✅ SAVE ONLY FILENAME
+
+        $stmt->execute();
+      }
+    }
+  }
+
+/* ✅ REDIRECT AFTER SUCCESS */
+header("Location: products.php");
+
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -456,7 +478,7 @@ if(isset($_POST['add_product'])){
 
 
   <!-- ================= KITCHEN & HOME ================= -->
-  <?php if($selectedCategory == 'Kitchen & Home'): ?>
+  <?php if($selectedCategory == 'Home & Kitchen'): ?>
 
 <h5 class="mt-4">Home & Kitchen Details</h5>
 

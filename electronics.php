@@ -19,6 +19,7 @@ include "dbconne.php";
 
 
 <style>
+
 /* ===== RESET ===== */
 *{
   margin:0;
@@ -515,10 +516,11 @@ body {
 
 .product-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* ⬅ bigger cards */
+  gap: 35px; /* more space */
   align-items: stretch;
 }
+
 
 /* Product Card (inherits your .card style) */
 .product-card {
@@ -529,10 +531,11 @@ body {
 
 /* Image fix */
 .product-card img {
-  height: 220px;
+  height: 280px; /* ⬅ bigger image */
   object-fit: contain;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
+
 
 /* Card body spacing */
 .product-card .card-body {
@@ -594,14 +597,23 @@ body {
 /* share */
 .share-btn{
   position:absolute;
-  top:1px;
-  right:70px;
+  top:340px;
+  right:10px;
   font-size:30px;
+  background: rgba(255,255,255,0.9);
+  border-radius:50%;
+  padding:8px 10px;
+  font-size:18px;
   cursor:pointer;
-  color:#ca1414;
+  color:#2874f0;           /* Flipkart blue */
+  transition: all 0.3s ease;
+  user-select:none;
 }
 .share-btn:hover{
-  color:#2874f0;
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(40,116,240,0.45);
+  color:#1a5fd1;
+  
 }
 
 
@@ -643,155 +655,14 @@ body {
   </div>
 
   <div class="category-item">
-    <img src="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/71050627a56b4693.png" />
+    <img src="https://rukminim1.flixcart.com/fk-p-flap/98/98/image/e355dd8cb732d920.jpg?q=80" />
     <span><a href="home.php" class="no-underline">Home & Kitchen</a></span>
   </div>
 </div>
 
 
 
-<div class="main-layout">
 
-  <!-- LEFT SIDEBAR -->
-  <div class="sidebar">
-    <h4 class="filter-title">Filters</h4>
-
-    <div class="filter-section">
-      <h6>CATEGORIES</h6>
-      <p class="category">‹ Electronics</p>
-      <strong>Electronics</strong>
-    </div>
-
-     <!-- brand -->
-   <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('brandBody','brandArrow')">
-    <span>BRAND</span>
-    <span id="brandArrow" class="arrow">▼</span>
-  </div>
-  <div id="brandBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="brand" value="HP"> HP</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="Dell"> Dell</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="Lenovo"> Lenovo</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="Apple"> Apple</label>
-    <label><input type="checkbox" class="filter" data-type="brand" value="Asus"> Asus</label>
-  </div>
-</div>
-
-
-    <!--PROCESSOR-->
-   <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('processorBody','processorArrow')">
-    <span>PROCESSOR</span>
-    <span id="processorArrow" class="arrow">▼</span>
-  </div>
-  <div id="processorBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="processor" value="Core i3"> Core i3</label>
-    <label><input type="checkbox" class="filter" data-type="processor" value="Core i5"> Core i5</label>
-    <label><input type="checkbox" class="filter" data-type="processor" value="Core i7"> Core i7</label>
-    <label><input type="checkbox" class="filter" data-type="processor" value="Core i9"> Core i9</label>
-    <label><input type="checkbox" class="filter" data-type="processor" value="Ryzen 5"> Ryzen 5</label>
-    <label><input type="checkbox" class="filter" data-type="processor" value="Ryzen 7"> Ryzen 7</label>
-  </div>
-</div>
-
-
-
-    <!-- PROCESSOR GENERATION -->
-  <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('genBody','genArrow')">
-    <span>PROCESSOR GENERATION</span>
-    <span id="genArrow" class="arrow">▼</span>
-  </div>
-  <div id="genBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="processor_gen" value="14th Gen"> 14th Gen</label>
-    <label><input type="checkbox" class="filter" data-type="processor_gen" value="13th Gen"> 13th Gen</label>
-    <label><input type="checkbox" class="filter" data-type="processor_gen" value="12th Gen"> 12th Gen</label>
-    <label><input type="checkbox" class="filter" data-type="processor_gen" value="11th Gen"> 11th Gen</label>
-    <label><input type="checkbox" class="filter" data-type="processor_gen" value="10th Gen"> 10th Gen</label>
-  </div>
-</div>
-
-
-        <!-- RAM CAPACITY-->
-   <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('ramBody','ramArrow')">
-    <span>RAM CAPACITY</span>
-    <span id="ramArrow" class="arrow">▼</span>
-  </div>
-  <div id="ramBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="ram" value="4 GB"> 4 GB</label>
-    <label><input type="checkbox" class="filter" data-type="ram" value="8 GB"> 8 GB</label>
-    <label><input type="checkbox" class="filter" data-type="ram" value="16 GB"> 16 GB</label>
-    <label><input type="checkbox" class="filter" data-type="ram" value="32 GB"> 32 GB</label>
-    <label><input type="checkbox" class="filter" data-type="ram" value="64 GB"> 64 GB</label>
-  </div>
-</div>
-
-
-
- <!-- STORAGE TYPE -->
-   <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('storageBody','storageArrow')">
-    <span>STORAGE TYPE</span>
-    <span id="storageArrow" class="arrow">▼</span>
-  </div>
-  <div id="storageBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="storage_type" value="SSD"> SSD</label>
-    <label><input type="checkbox" class="filter" data-type="storage_type" value="HDD"> HDD</label>
-    <label><input type="checkbox" class="filter" data-type="storage_type" value="eMMC"> eMMC</label>
-  </div>
-</div>
-
-
-<!-- SCREEN SIZE -->
-   <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('screenBody','screenArrow')">
-    <span>SCREEN SIZE</span>
-    <span id="screenArrow" class="arrow">▼</span>
-  </div>
-  <div id="screenBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="screen_size" value="13 inch"> 13 inch</label>
-    <label><input type="checkbox" class="filter" data-type="screen_size" value="14 inch"> 14 inch</label>
-    <label><input type="checkbox" class="filter" data-type="screen_size" value="15.6 inch"> 15.6 inch</label>
-    <label><input type="checkbox" class="filter" data-type="screen_size" value="16 inch"> 16 inch</label>
-  </div>
-</div>
-
-
-
-    <!-- GRAPHICS -->
-  <div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('graphicsBody','graphicsArrow')">
-    <span>GRAPHICS</span>
-    <span id="graphicsArrow" class="arrow">▼</span>
-  </div>
-  <div id="graphicsBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="graphics" value="Intel Integrated"> Intel Integrated</label>
-    <label><input type="checkbox" class="filter" data-type="graphics" value="NVIDIA RTX"> NVIDIA RTX</label>
-    <label><input type="checkbox" class="filter" data-type="graphics" value="NVIDIA GTX"> NVIDIA GTX</label>
-    <label><input type="checkbox" class="filter" data-type="graphics" value="AMD Radeon"> AMD Radeon</label>
-  </div>
-</div>
-
-
-
-     <!-- OFFERS-->
-<div class="filter-section">
-  <div class="filter-header" onclick="toggleFilter('offerBody','offerArrow')">
-    <span>OFFERS</span>
-    <span id="offerArrow" class="arrow">▼</span>
-  </div>
-
-  <div id="offerBody" class="filter-body">
-    <label><input type="checkbox" class="filter" data-type="discount" value="10%"> 10% or more</label>
-    <label><input type="checkbox" class="filter" data-type="discount" value="20%"> 20% or more</label>
-    <label><input type="checkbox" class="filter" data-type="discount" value="30%"> 30% or more</label>
-    <label><input type="checkbox" class="filter" data-type="discount" value="40%"> 40% or more</label>
-    <label><input type="checkbox" class="filter" data-type="discount" value="50%"> 50% or more</label>
-  </div>
-</div>
-
-  </div>
   <!-- Right sidebar -->
 
 
@@ -807,7 +678,7 @@ body {
 
       <?php
       $q = $conn->query(
-  "SELECT * FROM product 
+  "SELECT * FROM products
    WHERE status=1 AND category='electronics'"
 );
 while($p = $q->fetch_assoc()):
@@ -844,7 +715,7 @@ while($p = $q->fetch_assoc()):
 
   </div>
 </div>
-</div>
+
 
 
 

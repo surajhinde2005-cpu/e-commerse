@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 /* FETCH PRODUCTS */
-$products = $conn->query("SELECT * FROM product ORDER BY product_id DESC");
+$products = $conn->query("SELECT * FROM products ORDER BY product_id DESC"); // <-- change product_id to id
 ?>
 <!DOCTYPE html>
 <html>
@@ -99,10 +99,10 @@ body{
 <?php if ($products && $products->num_rows > 0): ?>
 <?php while($p = $products->fetch_assoc()): ?>
 <tr>
-<td><?= $p['product_id'] ?></td>
+<td><?= $p['product_id'] ?></td> <!-- changed product_id to id -->
 
 <td>
-<img src="../uploads/<?= htmlspecialchars($p['image']) ?>"
+<img src="uploads/<?= htmlspecialchars($p['image']) ?>"
      width="60" height="60"
      style="object-fit:cover;border-radius:6px">
 </td>
@@ -112,16 +112,20 @@ body{
 <td><?= htmlspecialchars($p['category']) ?></td>
 
 <td>
+<!-- Edit Button -->
 <a href="edit-product.php?id=<?= $p['product_id'] ?>"
    class="btn btn-warning btn-sm">
    Edit
 </a>
 
+
+<!-- Delete Button -->
 <a href="delete-product.php?id=<?= $p['product_id'] ?>"
    onclick="return confirm('Delete this product?')"
    class="btn btn-danger btn-sm">
    Delete
 </a>
+
 </td>
 </tr>
 <?php endwhile; ?>

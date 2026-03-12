@@ -4,6 +4,12 @@ include "dbconne.php";
 /* Fetch settings */
 $set = $conn->query("SELECT * FROM settings LIMIT 1")->fetch_assoc();
 
+if(!$set){
+    $conn->query("INSERT INTO settings (site_name) VALUES ('My Website')");
+    $set = $conn->query("SELECT * FROM settings LIMIT 1")->fetch_assoc();
+}
+
+
 /* Update settings */
 if(isset($_POST['save'])){
     $site_name = $_POST['site_name'];
@@ -23,7 +29,7 @@ if(isset($_POST['save'])){
     $stmt->bind_param("sssi", $site_name, $logo, $payment, $set['id']);
     $stmt->execute();
 
-    header("Location: settings.php?success=1");
+    header("Location: setting.php?success=1");
 }
 ?>
 
